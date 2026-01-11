@@ -1,0 +1,267 @@
+{
+  "project": {
+    "name": "Zero Defect Project Template",
+    "type": "zero-defect-development",
+    "language": "typescript",
+    "framework": "universal",
+    "methodology": "zero-defect-programming"
+  },
+  "zero_defect_config": {
+    "enabled": true,
+    "tolerance": "zero",
+    "fail_fast": true,
+    "prevention_over_detection": true
+  },
+  "agents": {
+    "preferred": ["@architect", "@security-auditor", "@test-engineer", "@performance-optimizer"],
+    "autoSuggest": true,
+    "backgroundResearch": ["librarian", "explore"],
+    "zeroDefectMode": true
+  },
+  "autorun": {
+    "onProjectStart": ["/zero-check", "/validate-requirements"],
+    "onEdit": ["/real-time-validation", "/fail-fast"],
+    "onSave": [
+      "smart_typecheck(ultra-strict: true)",
+      "smart_lint(biome: true, fix: false)",
+      "@security-auditor quick-scan"
+    ],
+    "beforeCommit": [
+      "/pre-commit-validation",
+      "/zero-check --comprehensive",
+      "/security-audit --owasp"
+    ],
+    "afterCommit": ["/cicd-validation"],
+    "onError": ["/emergency-fix", "/root-cause-analysis"]
+  },
+  "validation_layers": {
+    "compile_time": {
+      "typescript": {
+        "strict": true,
+        "noAny": true,
+        "exactOptionalPropertyTypes": true,
+        "noUncheckedIndexedAccess": true
+      },
+      "biome": {
+        "all_rules": true,
+        "zero_tolerance": true
+      }
+    },
+    "runtime": {
+      "input_validation": {
+        "required": true,
+        "library": "zod",
+        "coverage": "100%"
+      },
+      "assertions": {
+        "required": true,
+        "boundary_checks": true,
+        "fail_safe_defaults": true
+      }
+    },
+    "security": {
+      "owasp_compliance": true,
+      "vulnerability_scan": "comprehensive",
+      "secrets_detection": true,
+      "dependency_audit": true
+    }
+  },
+  "templates": {
+    "function_with_validation": {
+      "pattern": "TypeScript function with Zod validation and Result pattern",
+      "includes": [
+        "input-validation",
+        "error-handling", 
+        "type-safety",
+        "documentation"
+      ],
+      "example": "function safeFunction(input: unknown): Result<Output, Error>"
+    },
+    "component_defensive": {
+      "pattern": "React component with defensive programming",
+      "includes": [
+        "prop-validation",
+        "error-boundaries",
+        "type-safety",
+        "performance-optimization"
+      ]
+    },
+    "api_endpoint": {
+      "pattern": "API endpoint with comprehensive validation",
+      "includes": [
+        "input-validation",
+        "authentication-check",
+        "authorization-check",
+        "rate-limiting",
+        "error-handling",
+        "logging"
+      ]
+    }
+  },
+  "workflows": {
+    "zero-defect-development": [
+      "/validate-requirements",
+      "@architect analyze-design",
+      "/defensive-programming implementation",
+      "/zero-check validation",
+      "/pre-commit-validation",
+      "/cicd-validation"
+    ],
+    "security-first": [
+      "@security-auditor threat-model",
+      "/validate-requirements --security-focus",
+      "implement with defensive patterns",
+      "/security-audit --comprehensive",
+      "/penetration-test"
+    ],
+    "performance-critical": [
+      "/analyze-performance requirements",
+      "@architect optimize-design",
+      "implement with performance patterns",
+      "/performance-test --baseline",
+      "/monitor-production"
+    ]
+  },
+  "quality_gates": {
+    "mandatory": {
+      "type_safety": {
+        "errors": 0,
+        "any_types": 0,
+        "strict_mode": true
+      },
+      "security": {
+        "vulnerabilities": 0,
+        "owasp_compliance": true,
+        "secrets": 0
+      },
+      "test_coverage": {
+        "minimum": 90,
+        "unit_tests": 95,
+        "critical_paths": 100
+      },
+      "code_quality": {
+        "biome_errors": 0,
+        "complexity": "low",
+        "maintainability": "high"
+      }
+    },
+    "performance": {
+      "regression_threshold": 5,
+      "memory_leaks": 0,
+      "response_time": "< 200ms"
+    }
+  },
+  "defensive_patterns": {
+    "input_validation": {
+      "required": true,
+      "library": "zod",
+      "pattern": "z.schema.parse(input)"
+    },
+    "error_handling": {
+      "required": true,
+      "pattern": "Result<T, E>",
+      "no_exceptions": "prefer result pattern"
+    },
+    "type_guards": {
+      "required": true,
+      "runtime_validation": true
+    },
+    "boundary_checks": {
+      "required": true,
+      "assertions": true,
+      "fail_safe": true
+    }
+  },
+  "monitoring": {
+    "real_time": {
+      "type_errors": true,
+      "security_issues": true,
+      "performance_regressions": true,
+      "test_failures": true
+    },
+    "metrics": {
+      "defect_escape_rate": "< 0.1%",
+      "build_success_rate": "> 99%",
+      "security_score": "A+",
+      "performance_score": "A+"
+    },
+    "alerts": {
+      "immediate": [
+        "type-error-detected",
+        "security-vulnerability-found",
+        "test-failure",
+        "build-broken"
+      ],
+      "daily": [
+        "quality-metrics-report",
+        "zero-defect-dashboard"
+      ]
+    }
+  },
+  "settings": {
+    "tokenOptimization": true,
+    "batchOperations": true,
+    "smartCaching": true,
+    "focusedSessions": true,
+    "contextPersistence": true,
+    "zeroDefectMode": true,
+    "failFast": true,
+    "preventionOverDetection": true
+  },
+  "hooks": {
+    "preEdit": [
+      "zero-defect-mode-check",
+      "context-validation"
+    ],
+    "postEdit": [
+      "real-time-validation",
+      "type-check",
+      "security-scan-quick"
+    ],
+    "preCommit": [
+      "comprehensive-validation",
+      "security-audit",
+      "test-coverage-check"
+    ],
+    "onError": [
+      "immediate-rollback",
+      "root-cause-analysis",
+      "prevention-strategy-update"
+    ]
+  },
+  "shortcuts": {
+    "/zero": "/zero-check",
+    "/fast": "/fail-fast", 
+    "/safe": "/defensive-programming",
+    "/sec": "@security-auditor comprehensive-scan",
+    "/valid": "/real-time-validation",
+    "/gates": "/pre-commit-validation",
+    "/emergency": "/emergency-fix"
+  },
+  "emergency_protocols": {
+    "enabled": true,
+    "immediate_rollback": true,
+    "root_cause_analysis": true,
+    "process_improvement": true,
+    "team_notification": true,
+    "documentation_update": true
+  },
+  "formal_verification": {
+    "enabled": false,
+    "scope": ["authentication", "payment", "security-critical"],
+    "tools": ["formal-methods", "model-checking"],
+    "properties": [
+      "memory-safety",
+      "type-safety", 
+      "business-logic-correctness",
+      "security-properties"
+    ]
+  },
+  "continuous_improvement": {
+    "enabled": true,
+    "metrics_tracking": true,
+    "feedback_loop": true,
+    "process_updates": true,
+    "team_learning": true
+  }
+}
