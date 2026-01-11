@@ -1,6 +1,6 @@
-# 🚀 OpenCode Productivity Suite v2.0
+# 🚀 OpenCode Productivity Suite v2.1
 
-**The Most Advanced Development Productivity System Ever Created**
+**The Most Advanced Development Productivity System with Component Library Intelligence**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Revolutionized-blue.svg)](https://opencode.dev)
@@ -15,6 +15,7 @@ Transform your development workflow with the **most comprehensive productivity s
 ### 🏆 World's First Features
 - **🧠 AI-Powered Framework Detection**: Automatically detects and optimizes 38+ frameworks
 - **🎯 Intelligent Commands**: Context-aware AI analysis and optimization
+- **🎨 Component Library Intelligence**: Auto-installs top-tier UI libraries (Material-UI, shadcn/ui, etc.)
 - **📊 Real-Time Team Dashboard**: Live productivity metrics and Zero Defect scoring
 - **⚡ 30-Second Setup**: Complete production environment in one command
 - **🛡️ Guaranteed Zero Defects**: OWASP-compliant security and quality assurance
@@ -31,6 +32,7 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 **What you get instantly:**
 - ✅ 38+ frameworks automatically detected and optimized
 - ✅ AI-powered intelligent commands ready to use
+- ✅ Component library auto-installation (Material-UI, shadcn/ui, Angular Material, etc.)
 - ✅ Real-time team dashboard with Zero Defect scoring
 - ✅ Framework-specific configurations applied automatically
 - ✅ Desktop shortcuts and production-ready environment
@@ -49,9 +51,10 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 
 ### 🔧 **Enhanced Setup Commands**
 ```bash
-/init-zero-defect          # Enhanced auto-initialization with framework detection
+/init-zero-defect          # Enhanced auto-initialization with framework detection + UI libraries
 /detect-framework          # Advanced framework detection (38+ supported)
 /validate-setup           # Comprehensive setup validation
+/suggest-patterns --Components # Get top-tier component library recommendations
 ```
 
 ### 📊 **Team Management Commands**
@@ -67,15 +70,16 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 
 ### **38+ Frameworks Automatically Detected**
 
-#### 🎨 **Frontend Frameworks (11)**
-- **Next.js** 15.x - App Router optimization, Server Components
-- **React** 18.x - Hook optimization, performance patterns
-- **Vue.js** 3.x - Composition API, reactivity optimization
-- **Angular** 17.x - OnPush strategy, lazy loading
-- **Svelte** 4.x - Compiler optimizations
-- **Astro** 4.x - Static site optimization
-- **Qwik** 1.x - Resumable architecture
-- **SolidJS** 1.x - Fine-grained reactivity
+#### 🎨 **Frontend Frameworks (11) + Component Libraries**
+- **Next.js** 14.x - App Router, Server Components + shadcn/ui auto-install
+- **React** 18.x - Concurrent features, Suspense + Material-UI (MUI) auto-install
+- **Vue.js** 3.x - Composition API, Reactivity + Vuetify auto-install
+- **Angular** 17.x - Standalone components, Signals + Angular Material auto-install
+- **Svelte** 4.x - Component optimization + shadcn-svelte auto-install
+- **Nuxt** 3.x - Auto-imports, server-side optimization
+- **Astro** 4.x - Islands architecture, partial hydration + Astro UI
+- **Qwik** 1.x - Resumability, O(1) loading + Qwik UI
+- **SolidJS** 1.x - Fine-grained reactivity + Solid UI
 - **Remix** 2.x - Web standards focus
 - **SvelteKit** 2.x - Full-stack Svelte
 - **Fresh** 1.x - Deno-native framework
@@ -94,9 +98,9 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 - **Flask** 3.x - Microframework optimization
 
 #### 📱 **Mobile Frameworks (4)**
-- **Flutter** 3.x - Widget optimization, performance patterns
-- **React Native** 0.72.x - Native bridge optimization
-- **Expo** 49.x - Universal app patterns
+- **Flutter** 3.x - Widget optimization, performance patterns + Material Design UI
+- **React Native** 0.72.x - Native bridge optimization + React Native Elements
+- **Expo** 49.x - Universal app patterns + NativeBase auto-install
 - **Ionic** 7.x - Hybrid app optimization
 
 #### 🖥️ **Desktop & Specialized (12)**
@@ -118,6 +122,7 @@ Each framework gets:
 - ✅ **Testing framework** setup
 - ✅ **VS Code integration** with extensions
 - ✅ **Build optimization** configuration
+- ✅ **Component library recommendations** and auto-installation
 
 ---
 
@@ -390,6 +395,7 @@ cd your-project
 💡 Replace useState with useReducer for complex state
 🔧 Add React.memo to UserCard component
 ⚡ Use useCallback for event handlers
+🎨 Component Library: Material-UI recommended for enterprise apps
 📚 Example code provided for each suggestion
 ```
 

@@ -117,6 +117,35 @@
       "@hookform/resolvers@^3.3.0",
       "react-router-dom@^6.16.0"
     ],
+    "uiComponents": [
+      {
+        "name": "Material-UI (MUI)",
+        "description": "React components implementing Google's Material Design",
+        "install": "npm install @mui/material @emotion/react @emotion/styled",
+        "popularity": 95,
+        "useCase": "enterprise-apps",
+        "documentation": "https://mui.com/",
+        "priority": "recommended"
+      },
+      {
+        "name": "Chakra UI",
+        "description": "Simple, composable React components with great accessibility",
+        "install": "npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion",
+        "popularity": 85,
+        "useCase": "modern-web-apps",
+        "documentation": "https://chakra-ui.com/",
+        "priority": "recommended"
+      },
+      {
+        "name": "Ant Design",
+        "description": "Enterprise-class design language with React components",
+        "install": "npm install antd",
+        "popularity": 90,
+        "useCase": "admin-dashboards",
+        "documentation": "https://ant.design/",
+        "priority": "optional"
+      }
+    ],
     "testing": [
       "vitest@^1.0.0",
       "@testing-library/react@^14.0.0",

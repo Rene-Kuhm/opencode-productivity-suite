@@ -231,6 +231,11 @@ function Install-FrameworkSpecificConfig {
                     Update-PackageJsonWithFrameworkScripts -ProjectPath $ProjectPath -Scripts $config.scripts
                 }
                 
+                # Install recommended UI components if present
+                if ($config.uiComponents) {
+                    Install-RecommendedUIComponents -ProjectPath $ProjectPath -UIComponents $config.uiComponents
+                }
+                
                 # Store framework info for future reference
                 $frameworkInfo = @{
                     framework = $primaryFramework.Name
@@ -239,6 +244,7 @@ function Install-FrameworkSpecificConfig {
                     configApplied = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
                     securityRules = $config.securityRules
                     performanceRules = $config.performanceRules
+                    uiComponents = $config.uiComponents
                 } | ConvertTo-Json -Depth 10
                 
                 Set-Content "$opencodeDir\framework-info.json" -Value $frameworkInfo
@@ -329,6 +335,74 @@ function Update-PackageJsonWithFrameworkScripts {
         } catch {
             Write-Log "⚠️ Failed to update package.json: $($_.Exception.Message)" "WARN"
         }
+    }
+}
+
+function Install-RecommendedUIComponents {
+    param([string]$ProjectPath, [array]$UIComponents)
+    
+    if (-not $UIComponents -or $UIComponents.Count -eq 0) {
+        return
+    }
+    
+    Write-Log "🎨 Installing recommended UI components..."
+    
+    # Get the highest priority (recommended) component library
+    $recommendedLib = $UIComponents | Where-Object { $_.priority -eq "recommended" } | Select-Object -First 1
+    
+    if (-not $recommendedLib) {
+        $recommendedLib = $UIComponents | Sort-Object popularity -Descending | Select-Object -First 1
+    }
+    
+    if ($recommendedLib -and (Test-Path "$ProjectPath\package.json")) {
+        Write-Log "🚀 Installing recommended component library: $($recommendedLib.name)"
+        Write-Log "📝 Use case: $($recommendedLib.useCase)"
+        
+        try {
+            Push-Location $ProjectPath
+            
+            # Detect package manager
+            $packageManager = "npm"
+            if (Test-Path "pnpm-lock.yaml") { $packageManager = "pnpm" }
+            elseif (Test-Path "yarn.lock") { $packageManager = "yarn" }
+            elseif (Test-Path "bun.lockb") { $packageManager = "bun" }
+            
+            # Execute installation command
+            $installCommand = $recommendedLib.install
+            
+            # Handle different installation patterns
+            if ($installCommand -like "npx *") {
+                # Handle npx commands (like shadcn/ui)
+                Invoke-Expression $installCommand
+            } elseif ($installCommand -like "ng add *") {
+                # Handle Angular CLI additions
+                Invoke-Expression $installCommand
+            } else {
+                # Handle standard npm/yarn/pnpm installations
+                $packages = $installCommand -replace "npm install ", "" -replace "yarn add ", "" -replace "pnpm add ", ""
+                & $packageManager add $packages.Split(" ")
+            }
+            
+            Write-Log "✅ Successfully installed: $($recommendedLib.name)"
+            Write-Log "📖 Documentation: $($recommendedLib.documentation)"
+            
+            Pop-Location
+        } catch {
+            Write-Log "⚠️ Failed to install $($recommendedLib.name): $($_.Exception.Message)" "WARN"
+            Write-Log "💡 You can install it manually later using: $($recommendedLib.install)"
+            Pop-Location
+        }
+        
+        # Create a components suggestion file
+        $suggestionsPath = "$ProjectPath\.opencode\ui-components-suggestions.json"
+        $suggestions = @{
+            recommended = $recommendedLib
+            alternatives = $UIComponents | Where-Object { $_.name -ne $recommendedLib.name }
+            lastUpdated = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        } | ConvertTo-Json -Depth 10
+        
+        Set-Content -Path $suggestionsPath -Value $suggestions
+        Write-Log "✅ UI component suggestions saved to .opencode/ui-components-suggestions.json"
     }
 }
 

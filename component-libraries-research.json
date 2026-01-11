@@ -1,0 +1,301 @@
+{
+  "componentLibrariesDatabase": {
+    "react": {
+      "primary": [
+        {
+          "name": "Material-UI (MUI)",
+          "description": "React components implementing Google's Material Design",
+          "install": "npm install @mui/material @emotion/react @emotion/styled",
+          "popularity": 95,
+          "useCase": "enterprise-apps",
+          "documentation": "https://mui.com/"
+        },
+        {
+          "name": "Chakra UI",
+          "description": "Simple, composable React components with great accessibility",
+          "install": "npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion",
+          "popularity": 85,
+          "useCase": "modern-web-apps",
+          "documentation": "https://chakra-ui.com/"
+        },
+        {
+          "name": "Ant Design",
+          "description": "Enterprise-class design language with React components",
+          "install": "npm install antd",
+          "popularity": 90,
+          "useCase": "admin-dashboards",
+          "documentation": "https://ant.design/"
+        }
+      ]
+    },
+    "vue": {
+      "primary": [
+        {
+          "name": "Vuetify",
+          "description": "Vue.js Material Design component framework",
+          "install": "npm install vuetify",
+          "popularity": 90,
+          "useCase": "material-design-apps",
+          "documentation": "https://vuetifyjs.com/"
+        },
+        {
+          "name": "PrimeVue",
+          "description": "Rich set of UI components for Vue.js",
+          "install": "npm install primevue primeicons",
+          "popularity": 80,
+          "useCase": "business-applications",
+          "documentation": "https://www.primefaces.org/primevue/"
+        },
+        {
+          "name": "Quasar",
+          "description": "High-performance Vue.js based framework",
+          "install": "npm install -g @quasar/cli && quasar create",
+          "popularity": 85,
+          "useCase": "cross-platform-apps",
+          "documentation": "https://quasar.dev/"
+        }
+      ]
+    },
+    "angular": {
+      "primary": [
+        {
+          "name": "Angular Material",
+          "description": "Material Design components for Angular",
+          "install": "ng add @angular/material",
+          "popularity": 95,
+          "useCase": "material-design-angular",
+          "documentation": "https://material.angular.io/",
+          "context7_id": "/angular/material2-docs-content",
+          "code_snippets": 2385,
+          "benchmark_score": 90
+        },
+        {
+          "name": "PrimeNG",
+          "description": "Rich UI components for Angular",
+          "install": "npm install primeng primeicons",
+          "popularity": 85,
+          "useCase": "enterprise-angular-apps",
+          "documentation": "https://www.primefaces.org/primeng/"
+        },
+        {
+          "name": "ng-bootstrap",
+          "description": "Bootstrap components for Angular",
+          "install": "ng add @ng-bootstrap/ng-bootstrap",
+          "popularity": 80,
+          "useCase": "bootstrap-styled-apps",
+          "documentation": "https://ng-bootstrap.github.io/"
+        }
+      ]
+    },
+    "svelte": {
+      "primary": [
+        {
+          "name": "Carbon Components Svelte",
+          "description": "IBM Carbon Design System for Svelte",
+          "install": "npm install carbon-components-svelte",
+          "popularity": 85,
+          "useCase": "enterprise-design-system",
+          "documentation": "https://svelte.carbondesignsystem.com/",
+          "context7_id": "/websites/svelte_carbondesignsystem",
+          "code_snippets": 852,
+          "benchmark_score": 80.8
+        },
+        {
+          "name": "shadcn-svelte",
+          "description": "Beautiful, accessible UI components for Svelte",
+          "install": "npx shadcn-svelte@latest init",
+          "popularity": 90,
+          "useCase": "modern-web-apps",
+          "documentation": "https://www.shadcn-svelte.com/",
+          "context7_id": "/llmstxt/shadcn-svelte_llms_txt",
+          "code_snippets": 644,
+          "benchmark_score": 82.7
+        },
+        {
+          "name": "Konsta UI Svelte",
+          "description": "Mobile-first UI components for Svelte",
+          "install": "npm install konsta",
+          "popularity": 70,
+          "useCase": "mobile-web-apps",
+          "documentation": "https://konstaui.com/svelte",
+          "context7_id": "/websites/konstaui_svelte",
+          "code_snippets": 238,
+          "benchmark_score": 60.5
+        }
+      ]
+    },
+    "flutter": {
+      "primary": [
+        {
+          "name": "Material Design",
+          "description": "Flutter's built-in Material Design components",
+          "install": "Built-in with Flutter SDK",
+          "popularity": 100,
+          "useCase": "material-design-mobile-apps",
+          "documentation": "https://api.flutter.dev/flutter/material/material-library.html",
+          "context7_id": "/websites/api_flutter_dev_flutter",
+          "code_snippets": 409,
+          "benchmark_score": 22.8
+        },
+        {
+          "name": "Cupertino",
+          "description": "iOS-style components for Flutter",
+          "install": "Built-in with Flutter SDK",
+          "popularity": 90,
+          "useCase": "ios-style-apps",
+          "documentation": "https://api.flutter.dev/flutter/cupertino/cupertino-library.html"
+        },
+        {
+          "name": "Flutter Widgets",
+          "description": "Core Flutter widget library",
+          "install": "Built-in with Flutter SDK",
+          "popularity": 100,
+          "useCase": "custom-ui-components",
+          "documentation": "https://api.flutter.dev/flutter/widgets/widgets-library.html"
+        }
+      ]
+    },
+    "nextjs": {
+      "primary": [
+        {
+          "name": "shadcn/ui",
+          "description": "Beautifully designed components for Next.js with Tailwind",
+          "install": "npx shadcn-ui@latest init",
+          "popularity": 95,
+          "useCase": "modern-nextjs-apps",
+          "documentation": "https://ui.shadcn.com/"
+        },
+        {
+          "name": "Tremor",
+          "description": "React library to build dashboards fast",
+          "install": "npm install @tremor/react",
+          "popularity": 80,
+          "useCase": "dashboard-analytics",
+          "documentation": "https://www.tremor.so/"
+        },
+        {
+          "name": "NextUI",
+          "description": "Beautiful, fast, and modern React UI library",
+          "install": "npm install @nextui-org/react",
+          "popularity": 85,
+          "useCase": "modern-web-interfaces",
+          "documentation": "https://nextui.org/"
+        }
+      ]
+    },
+    "electron": {
+      "primary": [
+        {
+          "name": "Electron UI Kit",
+          "description": "Component library specifically designed for Electron apps",
+          "install": "npm install electron-ui-kit",
+          "popularity": 75,
+          "useCase": "desktop-applications",
+          "documentation": "https://github.com/electron-ui-kit/electron-ui-kit"
+        },
+        {
+          "name": "Photon Kit",
+          "description": "UI toolkit for building beautiful Electron apps",
+          "install": "npm install photon-kit",
+          "popularity": 70,
+          "useCase": "native-desktop-feel",
+          "documentation": "http://photonkit.com/"
+        }
+      ]
+    },
+    "tauri": {
+      "primary": [
+        {
+          "name": "Tauri UI",
+          "description": "Rust-based desktop app UI components",
+          "install": "cargo add tauri-ui",
+          "popularity": 65,
+          "useCase": "rust-desktop-apps",
+          "documentation": "https://tauri.studio/"
+        }
+      ]
+    },
+    "express": {
+      "primary": [
+        {
+          "name": "Admin Bro",
+          "description": "Admin panel for Node.js applications",
+          "install": "npm install admin-bro @admin-bro/express",
+          "popularity": 80,
+          "useCase": "admin-interfaces",
+          "documentation": "https://adminbro.com/"
+        }
+      ]
+    },
+    "nestjs": {
+      "primary": [
+        {
+          "name": "NestJS CRUD",
+          "description": "CRUD operations for NestJS applications",
+          "install": "npm install @nestjsx/crud",
+          "popularity": 85,
+          "useCase": "api-development",
+          "documentation": "https://github.com/nestjsx/crud"
+        }
+      ]
+    },
+    "expo": {
+      "primary": [
+        {
+          "name": "NativeBase",
+          "description": "Mobile-first component library for React Native",
+          "install": "npm install native-base react-native-svg react-native-safe-area-context",
+          "popularity": 85,
+          "useCase": "cross-platform-mobile",
+          "documentation": "https://nativebase.io/"
+        },
+        {
+          "name": "React Native Elements",
+          "description": "Cross Platform React Native UI Toolkit",
+          "install": "npm install react-native-elements react-native-safe-area-context",
+          "popularity": 90,
+          "useCase": "mobile-ui-toolkit",
+          "documentation": "https://reactnativeelements.com/"
+        }
+      ]
+    },
+    "astro": {
+      "primary": [
+        {
+          "name": "Astro UI",
+          "description": "Component library optimized for Astro",
+          "install": "npm install @astrojs/ui",
+          "popularity": 70,
+          "useCase": "static-site-generation",
+          "documentation": "https://astro.build/docs/"
+        }
+      ]
+    },
+    "qwik": {
+      "primary": [
+        {
+          "name": "Qwik UI",
+          "description": "Headless UI components for Qwik",
+          "install": "npm install @qwik-ui/headless",
+          "popularity": 75,
+          "useCase": "performance-critical-apps",
+          "documentation": "https://qwikui.com/"
+        }
+      ]
+    },
+    "solidjs": {
+      "primary": [
+        {
+          "name": "Solid UI",
+          "description": "UI components for SolidJS applications",
+          "install": "npm install @suid/material",
+          "popularity": 70,
+          "useCase": "reactive-web-apps",
+          "documentation": "https://suid.io/"
+        }
+      ]
+    }
+  },
+  "lastUpdated": "2026-01-11T15:16:00.000Z",
+  "version": "1.0.0"
+}
