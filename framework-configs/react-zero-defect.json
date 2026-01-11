@@ -1,0 +1,194 @@
+{
+  "framework": "React",
+  "version": "18.x",
+  "category": "Frontend",
+  "description": "Zero Defect configuration for React projects",
+  "biome": {
+    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+    "organizeImports": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "all": true,
+        "recommended": true,
+        "correctness": {
+          "noUnusedVariables": "error",
+          "useExhaustiveDependencies": "error",
+          "useHookAtTopLevel": "error"
+        },
+        "suspicious": {
+          "noArrayIndexKey": "error",
+          "noConsoleLog": "warn",
+          "noDebugger": "error"
+        },
+        "performance": {
+          "noDelete": "error",
+          "noAccumulatingSpread": "error"
+        },
+        "security": {
+          "noDangerouslySetInnerHtml": "error",
+          "noGlobalEval": "error"
+        },
+        "style": {
+          "useImportType": "error",
+          "useConst": "error",
+          "useTemplate": "error"
+        },
+        "a11y": {
+          "useAltText": "error",
+          "useAnchorContent": "error",
+          "useButtonType": "error",
+          "useKeyWithClickEvents": "error",
+          "useValidAnchor": "error"
+        }
+      }
+    },
+    "formatter": {
+      "enabled": true,
+      "formatWithErrors": false,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "lineEnding": "lf"
+    }
+  },
+  "typescript": {
+    "compilerOptions": {
+      "target": "ES2020",
+      "lib": [
+        "DOM",
+        "DOM.Iterable",
+        "ES6"
+      ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react-jsx",
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "strictPropertyInitialization": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noUncheckedIndexedAccess": true
+    },
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "node_modules",
+      "build",
+      "dist"
+    ]
+  },
+  "dependencies": {
+    "required": [
+      "react@^18.0.0",
+      "react-dom@^18.0.0",
+      "@types/react@^18.0.0",
+      "@types/react-dom@^18.0.0",
+      "typescript@^5.0.0",
+      "zod@^3.22.0"
+    ],
+    "recommended": [
+      "@biomejs/biome@^1.4.0",
+      "vite@^5.0.0",
+      "@vitejs/plugin-react@^4.0.0",
+      "@tanstack/react-query@^5.0.0",
+      "zustand@^4.4.0",
+      "react-hook-form@^7.47.0",
+      "@hookform/resolvers@^3.3.0",
+      "react-router-dom@^6.16.0"
+    ],
+    "testing": [
+      "vitest@^1.0.0",
+      "@testing-library/react@^14.0.0",
+      "@testing-library/jest-dom@^6.0.0",
+      "@testing-library/user-event@^14.0.0",
+      "jsdom@^23.0.0"
+    ]
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply",
+    "format": "biome format . --write",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "zero-check": "npm run type-check && npm run lint && npm run test"
+  },
+  "gitHooks": {
+    "pre-commit": [
+      "npm run type-check",
+      "npm run lint",
+      "npm run test -- --run",
+      "git add ."
+    ]
+  },
+  "vscode": {
+    "settings": {
+      "typescript.preferences.quotemark": "double",
+      "editor.defaultFormatter": "biomejs.biome",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "quickfix.biome": "explicit",
+        "source.organizeImports.biome": "explicit"
+      }
+    },
+    "extensions": [
+      "biomejs.biome",
+      "ms-vscode.vscode-typescript-next"
+    ]
+  },
+  "securityRules": [
+    "Always validate props with Zod schemas",
+    "Sanitize user inputs before rendering",
+    "Use dangerouslySetInnerHTML with extreme caution",
+    "Implement proper error boundaries",
+    "Validate environment variables",
+    "Use HTTPS in production",
+    "Implement proper CORS policies",
+    "Avoid storing sensitive data in localStorage"
+  ],
+  "performanceRules": [
+    "Use React.memo for expensive components",
+    "Implement proper code splitting",
+    "Use useMemo and useCallback wisely",
+    "Avoid unnecessary re-renders",
+    "Optimize bundle size",
+    "Use lazy loading for images and components",
+    "Implement virtual scrolling for large lists",
+    "Monitor and optimize Core Web Vitals"
+  ],
+  "accessibilityRules": [
+    "Always provide alt text for images",
+    "Use semantic HTML elements",
+    "Implement proper focus management",
+    "Ensure keyboard navigation works",
+    "Use proper heading hierarchy",
+    "Implement ARIA labels where needed",
+    "Test with screen readers",
+    "Maintain proper color contrast"
+  ]
+}

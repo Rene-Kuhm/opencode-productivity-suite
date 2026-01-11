@@ -1,0 +1,173 @@
+{
+  "framework": "Qwik",
+  "version": "1.x",
+  "category": "Frontend",
+  "description": "Zero Defect configuration for Qwik projects",
+  "biome": {
+    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+    "organizeImports": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "all": true,
+        "recommended": true,
+        "correctness": {
+          "noUnusedVariables": "error",
+          "useExhaustiveDependencies": "error"
+        },
+        "suspicious": {
+          "noArrayIndexKey": "error",
+          "noConsoleLog": "warn",
+          "noDebugger": "error"
+        },
+        "performance": {
+          "noDelete": "error",
+          "noAccumulatingSpread": "error"
+        },
+        "security": {
+          "noDangerouslySetInnerHtml": "error",
+          "noGlobalEval": "error"
+        },
+        "style": {
+          "useImportType": "error",
+          "useConst": "error",
+          "useTemplate": "error"
+        }
+      }
+    },
+    "formatter": {
+      "enabled": true,
+      "formatWithErrors": false,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "lineEnding": "lf"
+    }
+  },
+  "typescript": {
+    "compilerOptions": {
+      "allowJs": true,
+      "target": "ES2020",
+      "module": "ES2022",
+      "lib": ["es2022", "DOM", "WebWorker", "DOM.Iterable"],
+      "skipLibCheck": true,
+      "types": ["node", "vite/client"],
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "strictPropertyInitialization": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noUncheckedIndexedAccess": true,
+      "noFallthroughCasesInSwitch": true,
+      "moduleResolution": "bundler",
+      "jsx": "react-jsx",
+      "jsxImportSource": "@builder.io/qwik",
+      "incremental": true,
+      "resolveJsonModule": true
+    },
+    "files": ["./.eslintrc.cjs"],
+    "include": ["src", "./*.d.ts"]
+  },
+  "dependencies": {
+    "required": [
+      "@builder.io/qwik@^1.2.0",
+      "@builder.io/qwik-city@^1.2.0",
+      "typescript@^5.0.0",
+      "zod@^3.22.0"
+    ],
+    "recommended": [
+      "@biomejs/biome@^1.4.0",
+      "vite@^5.0.0",
+      "undici@^5.26.0"
+    ],
+    "testing": [
+      "vitest@^1.0.0"
+    ]
+  },
+  "scripts": {
+    "dev": "vite --mode ssr",
+    "build": "qwik build",
+    "build.client": "vite build",
+    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.server": "vite build -c adapters/cloudflare-pages/vite.config.ts",
+    "build.types": "tsc --incremental --noEmit",
+    "deploy": "qwik build && wrangler pages dev dist",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply",
+    "format": "biome format . --write",
+    "preview": "qwik build preview && vite preview --open",
+    "serve": "wrangler pages dev dist",
+    "start": "vite --open --mode ssr",
+    "test": "vitest",
+    "test.unit": "vitest components",
+    "test.unit.ui": "vitest components --ui",
+    "type-check": "tsc --incremental --noEmit",
+    "zero-check": "npm run type-check && npm run lint && npm run test"
+  },
+  "gitHooks": {
+    "pre-commit": [
+      "npm run type-check",
+      "npm run lint",
+      "npm run test -- --run",
+      "git add ."
+    ]
+  },
+  "vscode": {
+    "settings": {
+      "typescript.preferences.quotemark": "double",
+      "editor.defaultFormatter": "biomejs.biome",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "quickfix.biome": "explicit",
+        "source.organizeImports.biome": "explicit"
+      }
+    },
+    "extensions": [
+      "biomejs.biome",
+      "ms-vscode.vscode-typescript-next"
+    ]
+  },
+  "qwikSpecific": {
+    "resumable": true,
+    "optimizer": true,
+    "ssr": true,
+    "streaming": true
+  },
+  "securityRules": [
+    "Always validate props with Zod schemas",
+    "Use Qwik's built-in sanitization",
+    "Implement proper error boundaries",
+    "Validate environment variables",
+    "Use HTTPS in production",
+    "Implement proper CORS policies",
+    "Sanitize user inputs before rendering",
+    "Use Qwik's security features"
+  ],
+  "performanceRules": [
+    "Leverage Qwik's resumable architecture",
+    "Use $ syntax for lazy loading",
+    "Optimize bundle size with Qwik optimizer",
+    "Minimize hydration overhead",
+    "Use Qwik's streaming capabilities",
+    "Implement proper code splitting",
+    "Optimize images and assets",
+    "Monitor Core Web Vitals"
+  ]
+}
