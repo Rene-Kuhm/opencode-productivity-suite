@@ -238,4 +238,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Transform your development workflow today with OpenCode Productivity Suite!**
 
-*Built with ❤️ for the OpenCode community*
+*Built with ❤️ for the René kuhm community*
