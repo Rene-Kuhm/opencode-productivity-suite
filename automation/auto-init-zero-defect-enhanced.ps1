@@ -236,6 +236,14 @@ function Install-FrameworkSpecificConfig {
                     Install-RecommendedUIComponents -ProjectPath $ProjectPath -UIComponents $config.uiComponents
                 }
                 
+                # Smart Tailwind CSS Detection and Installation
+                if ($primaryFramework.RequiresTailwind -eq $true -or $config.tailwindHacker) {
+                    Write-Log "🚀 UI Framework detected - initializing Tailwind CSS Hacker System..."
+                    Initialize-TailwindHackerSystem -ProjectPath $ProjectPath -Config $config.tailwindHacker
+                } elseif ($primaryFramework.UIFramework -eq $false) {
+                    Write-Log "🏗️ Backend framework detected - skipping Tailwind CSS installation" "INFO"
+                }
+                
                 # Store framework info for future reference
                 $frameworkInfo = @{
                     framework = $primaryFramework.Name
@@ -335,6 +343,40 @@ function Update-PackageJsonWithFrameworkScripts {
         } catch {
             Write-Log "⚠️ Failed to update package.json: $($_.Exception.Message)" "WARN"
         }
+    }
+}
+
+function Initialize-TailwindHackerSystem {
+    param([string]$ProjectPath, [object]$Config)
+    
+    # If no specific config provided, use default hacker config for UI frameworks
+    if (-not $Config) {
+        $Config = @{
+            autoUpgrade = $true
+            version = "latest"
+        }
+    }
+    
+    Write-Log "🚀 Initializing Tailwind CSS Hacker System..."
+    
+    try {
+        # Import and execute Tailwind Hacker System
+        $tailwindSystemPath = "$TEMP_DIR\automation\tailwind-hacker-system.ps1"
+        if (Test-Path $tailwindSystemPath) {
+            . $tailwindSystemPath
+            
+            # Execute with configuration
+            $result = Initialize-TailwindHackerSystem -ProjectPath $ProjectPath -ForceUpgrade:$Config.autoUpgrade
+            
+            if ($result.success) {
+                Write-Log "✅ Tailwind CSS Hacker System initialized successfully"
+                Write-Log "🎯 Features: $($result.features -join ', ')"
+            }
+        } else {
+            Write-Log "⚠️ Tailwind Hacker System script not found" "WARN"
+        }
+    } catch {
+        Write-Log "❌ Failed to initialize Tailwind Hacker System: $($_.Exception.Message)" "ERROR"
     }
 }
 

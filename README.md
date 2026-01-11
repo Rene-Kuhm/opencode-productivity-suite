@@ -1,6 +1,6 @@
-# 🚀 OpenCode Productivity Suite v2.1
+# 🚀 OpenCode Productivity Suite v2.3
 
-**The Most Advanced Development Productivity System with Component Library Intelligence**
+**The Most Advanced Development Productivity System with Smart Tailwind Detection & Component Library Intelligence**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Revolutionized-blue.svg)](https://opencode.dev)
@@ -16,6 +16,8 @@ Transform your development workflow with the **most comprehensive productivity s
 - **🧠 AI-Powered Framework Detection**: Automatically detects and optimizes 38+ frameworks
 - **🎯 Intelligent Commands**: Context-aware AI analysis and optimization
 - **🎨 Component Library Intelligence**: Auto-installs top-tier UI libraries (Material-UI, shadcn/ui, etc.)
+- **🚀 Smart Tailwind Detection**: Automatically installs Tailwind CSS v4.1+ only for UI frameworks
+- **🧠 Tailwind CSS Hacker System**: Ultra-advanced configuration with modern CSS features
 - **📊 Real-Time Team Dashboard**: Live productivity metrics and Zero Defect scoring
 - **⚡ 30-Second Setup**: Complete production environment in one command
 - **🛡️ Guaranteed Zero Defects**: OWASP-compliant security and quality assurance
@@ -32,6 +34,7 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 **What you get instantly:**
 - ✅ 38+ frameworks automatically detected and optimized
 - ✅ AI-powered intelligent commands ready to use
+- ✅ Smart Tailwind CSS v4.1+ detection (only for UI frameworks)
 - ✅ Component library auto-installation (Material-UI, shadcn/ui, Angular Material, etc.)
 - ✅ Real-time team dashboard with Zero Defect scoring
 - ✅ Framework-specific configurations applied automatically
@@ -51,10 +54,11 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 
 ### 🔧 **Enhanced Setup Commands**
 ```bash
-/init-zero-defect          # Enhanced auto-initialization with framework detection + UI libraries
+/init-zero-defect          # Smart auto-initialization with framework + Tailwind detection
 /detect-framework          # Advanced framework detection (38+ supported)
 /validate-setup           # Comprehensive setup validation
 /suggest-patterns --Components # Get top-tier component library recommendations
+/tailwind-hacker              # Ultra-advanced Tailwind CSS v4.1+ management
 ```
 
 ### 📊 **Team Management Commands**
@@ -70,19 +74,19 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 
 ### **38+ Frameworks Automatically Detected**
 
-#### 🎨 **Frontend Frameworks (11) + Component Libraries**
-- **Next.js** 14.x - App Router, Server Components + shadcn/ui auto-install
-- **React** 18.x - Concurrent features, Suspense + Material-UI (MUI) auto-install
-- **Vue.js** 3.x - Composition API, Reactivity + Vuetify auto-install
-- **Angular** 17.x - Standalone components, Signals + Angular Material auto-install
-- **Svelte** 4.x - Component optimization + shadcn-svelte auto-install
-- **Nuxt** 3.x - Auto-imports, server-side optimization
-- **Astro** 4.x - Islands architecture, partial hydration + Astro UI
-- **Qwik** 1.x - Resumability, O(1) loading + Qwik UI
-- **SolidJS** 1.x - Fine-grained reactivity + Solid UI
-- **Remix** 2.x - Web standards focus
-- **SvelteKit** 2.x - Full-stack Svelte
-- **Fresh** 1.x - Deno-native framework
+#### 🎨 **Frontend Frameworks (11) + Smart Tailwind + Component Libraries**
+- **Next.js** 14.x - App Router, Server Components + Tailwind v4.1+ + shadcn/ui auto-install
+- **React** 18.x - Concurrent features, Suspense + Tailwind v4.1+ + Material-UI (MUI) auto-install
+- **Vue.js** 3.x - Composition API, Reactivity + Tailwind v4.1+ + Vuetify auto-install
+- **Angular** 17.x - Standalone components, Signals + Tailwind v4.1+ + Angular Material auto-install
+- **Svelte** 4.x - Component optimization + Tailwind v4.1+ + shadcn-svelte auto-install
+- **Nuxt** 3.x - Auto-imports, server-side optimization + Tailwind v4.1+
+- **Astro** 4.x - Islands architecture, partial hydration + Tailwind v4.1+ + Astro UI
+- **Qwik** 1.x - Resumability, O(1) loading + Tailwind v4.1+ + Qwik UI
+- **SolidJS** 1.x - Fine-grained reactivity + Tailwind v4.1+ + Solid UI
+- **Remix** 2.x - Web standards focus + Tailwind v4.1+
+- **SvelteKit** 2.x - Full-stack Svelte + Tailwind v4.1+
+- **Fresh** 1.x - Deno-native framework + Tailwind v4.1+
 
 #### ⚙️ **Backend Frameworks (11)**
 - **Express.js** 4.x - Security middleware, API optimization
@@ -97,11 +101,11 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 - **Koa.js** 2.x - Middleware patterns
 - **Flask** 3.x - Microframework optimization
 
-#### 📱 **Mobile Frameworks (4)**
-- **Flutter** 3.x - Widget optimization, performance patterns + Material Design UI
-- **React Native** 0.72.x - Native bridge optimization + React Native Elements
-- **Expo** 49.x - Universal app patterns + NativeBase auto-install
-- **Ionic** 7.x - Hybrid app optimization
+#### 📱 **Mobile Frameworks (4) + Smart Detection**
+- **Flutter** 3.x - Widget optimization, performance patterns + Material Design UI (No Tailwind - native styling)
+- **React Native** 0.72.x - Native bridge optimization + React Native Elements (No Tailwind - native components)
+- **Expo** 49.x - Universal app patterns + NativeBase auto-install (No Tailwind - React Native styling)
+- **Ionic** 7.x - Hybrid app optimization + Tailwind v4.1+ (Web-based hybrid)
 
 #### 🖥️ **Desktop & Specialized (12)**
 - **Electron** 27.x - Desktop app optimization
@@ -123,6 +127,8 @@ Each framework gets:
 - ✅ **VS Code integration** with extensions
 - ✅ **Build optimization** configuration
 - ✅ **Component library recommendations** and auto-installation
+- ✅ **Smart Tailwind CSS detection** with v4.1+ hacker system
+- ✅ **Modern CSS features** (container queries, color-mix, cascade layers)
 
 ---
 
@@ -389,14 +395,23 @@ cd your-project
 🔧 Auto-fix available for 2/3 issues
 ```
 
-### **Pattern Suggestions**
+### **Smart Detection & Pattern Suggestions**
 ```
-🎯 REACT PATTERNS:
+🎯 REACT PROJECT DETECTED:
+🚀 Auto-installing Tailwind CSS v4.1+ (UI Framework detected)
+🎨 Component Library: Material-UI recommended for enterprise apps
 💡 Replace useState with useReducer for complex state
 🔧 Add React.memo to UserCard component
 ⚡ Use useCallback for event handlers
-🎨 Component Library: Material-UI recommended for enterprise apps
+🌈 Modern CSS: Glass morphism, container queries, color-mix() enabled
 📚 Example code provided for each suggestion
+
+🏗️ EXPRESS.JS PROJECT DETECTED:
+❌ Skipping Tailwind CSS (Backend Framework detected)
+✅ Focus on API development tools instead
+💡 Implement proper error handling middleware
+🔧 Add request validation with Zod
+⚡ Use compression and helmet for performance/security
 ```
 
 ---

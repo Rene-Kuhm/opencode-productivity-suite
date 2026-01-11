@@ -1,8 +1,8 @@
 {
-  "framework": "Vue.js",
-  "version": "3.x",
+  "framework": "Svelte",
+  "version": "4.x",
   "category": "Frontend",
-  "description": "Zero Defect configuration for Vue.js projects",
+  "description": "Zero Defect configuration for Svelte projects",
   "biome": {
     "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
     "organizeImports": {
@@ -57,7 +57,6 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "noEmit": true,
-      "jsx": "preserve",
       "strict": true,
       "noUnusedLocals": true,
       "noUnusedParameters": true,
@@ -75,15 +74,16 @@
       "noUncheckedIndexedAccess": true,
       "baseUrl": ".",
       "paths": {
-        "@/*": ["./src/*"]
+        "$lib/*": ["./src/lib/*"],
+        "$app/*": ["./node_modules/@sveltejs/kit/src/runtime/app/*"]
       }
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+    "exclude": ["node_modules/**/*", ".svelte-kit/**/*"]
   },
   "dependencies": {
     "required": [
-      "vue@^3.3.0",
+      "svelte@^4.0.0",
       "typescript@^5.0.0",
       "zod@^3.22.0"
     ],
@@ -94,29 +94,26 @@
       "@tailwindcss/forms@latest",
       "autoprefixer@latest",
       "postcss@latest",
+      "@sveltejs/kit@^1.20.0",
+      "@sveltejs/adapter-auto@^2.0.0",
       "vite@^5.0.0",
-      "@vitejs/plugin-vue@^4.4.0",
-      "@vue/tsconfig@^0.4.0",
-      "pinia@^2.1.0",
-      "@tanstack/vue-query@^5.0.0",
-      "vue-router@^4.2.0",
-      "@vueuse/core@^10.5.0"
+      "@sveltejs/vite-plugin-svelte@^2.4.0"
     ],
     "testing": [
       "vitest@^1.0.0",
-      "@vue/test-utils@^2.4.0",
-      "@testing-library/vue@^8.0.0",
+      "@testing-library/svelte@^4.0.0",
+      "@testing-library/jest-dom@^6.0.0",
       "jsdom@^23.0.0"
     ]
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "dev": "vite dev",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply",
     "format": "biome format . --write",
-    "type-check": "vue-tsc --noEmit",
+    "type-check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
@@ -142,36 +139,35 @@
     },
     "extensions": [
       "biomejs.biome",
-      "vue.volar",
-      "vue.vscode-typescript-vue-plugin"
+      "svelte.svelte-vscode"
     ]
   },
   "uiComponents": [
     {
-      "name": "Vuetify",
-      "description": "Vue.js Material Design component framework",
-      "install": "npm install vuetify",
+      "name": "shadcn-svelte",
+      "description": "Beautiful, accessible UI components for Svelte",
+      "install": "npx shadcn-svelte@latest init",
       "popularity": 90,
-      "useCase": "material-design-apps",
-      "documentation": "https://vuetifyjs.com/",
+      "useCase": "modern-web-apps",
+      "documentation": "https://www.shadcn-svelte.com/",
       "priority": "recommended"
     },
     {
-      "name": "PrimeVue",
-      "description": "Rich set of UI components for Vue.js",
-      "install": "npm install primevue primeicons",
-      "popularity": 80,
-      "useCase": "business-applications",
-      "documentation": "https://www.primefaces.org/primevue/",
+      "name": "Carbon Components Svelte",
+      "description": "IBM Carbon Design System for Svelte",
+      "install": "npm install carbon-components-svelte",
+      "popularity": 85,
+      "useCase": "enterprise-design-system",
+      "documentation": "https://svelte.carbondesignsystem.com/",
       "priority": "optional"
     },
     {
-      "name": "Quasar",
-      "description": "High-performance Vue.js based framework",
-      "install": "npm install -g @quasar/cli && quasar create",
-      "popularity": 85,
-      "useCase": "cross-platform-apps",
-      "documentation": "https://quasar.dev/",
+      "name": "Konsta UI Svelte",
+      "description": "Mobile-first UI components for Svelte",
+      "install": "npm install konsta",
+      "popularity": 70,
+      "useCase": "mobile-web-apps",
+      "documentation": "https://konstaui.com/svelte",
       "priority": "optional"
     }
   ],
@@ -200,16 +196,17 @@
       "responsive-utilities"
     ]
   },
-  "vueSpecific": {
-    "compositionApi": true,
-    "scriptSetup": true,
-    "singleFileComponents": true,
-    "reactivityTransform": false
+  "svelteSpecific": {
+    "sveltekit": true,
+    "ssr": true,
+    "prerendering": true,
+    "stores": true,
+    "reactiveStatements": true
   },
   "securityRules": [
     "Always validate props with Zod schemas",
     "Sanitize user inputs before rendering",
-    "Use v-html with extreme caution",
+    "Use {@html} with extreme caution",
     "Implement proper error boundaries",
     "Validate environment variables",
     "Use HTTPS in production",
@@ -217,13 +214,13 @@
     "Avoid storing sensitive data in localStorage"
   ],
   "performanceRules": [
-    "Use defineAsyncComponent for code splitting",
+    "Use dynamic imports for code splitting",
     "Implement proper component optimization",
-    "Use computed properties for expensive operations",
-    "Avoid unnecessary reactivity",
+    "Use derived stores for computed values",
+    "Avoid unnecessary reactive statements",
     "Optimize bundle size with tree shaking",
-    "Use v-show vs v-if appropriately",
+    "Use {#if} vs {#each} appropriately",
     "Implement virtual scrolling for large lists",
-    "Use keep-alive for expensive components"
+    "Use tick() for DOM updates timing"
   ]
 }

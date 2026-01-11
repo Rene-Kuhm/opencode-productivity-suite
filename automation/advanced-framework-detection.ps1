@@ -20,6 +20,8 @@ $FrameworkDatabase = @{
         ConfigFile = "react-zero-defect.json"
         Commands = @("npm run dev", "npm run build", "npm test")
         Description = "React library for building user interfaces"
+        RequiresTailwind = $true
+        UIFramework = $true
     }
     
     "Next.js" = @{
@@ -30,6 +32,8 @@ $FrameworkDatabase = @{
         ConfigFile = "nextjs-zero-defect.json"
         Commands = @("npm run dev", "npm run build", "npm start")
         Description = "React framework for production"
+        RequiresTailwind = $true
+        UIFramework = $true
     }
     
     "Vue.js" = @{
@@ -40,6 +44,8 @@ $FrameworkDatabase = @{
         ConfigFile = "vue-zero-defect.json"
         Commands = @("npm run serve", "npm run build")
         Description = "Progressive JavaScript framework"
+        RequiresTailwind = $true
+        UIFramework = $true
     }
     
     "Nuxt.js" = @{
@@ -53,23 +59,27 @@ $FrameworkDatabase = @{
     }
     
     "Angular" = @{
-        Files = @("angular.json", ".angular-cli.json")
-        Patterns = @('"@angular/', '"ng ')
-        Priority = 85
+        Files = @("angular.json", "package.json")
+        Patterns = @('"@angular/core":', '"@angular/cli":')
+        Priority = 88
         Category = "Frontend"
         ConfigFile = "angular-zero-defect.json"
         Commands = @("ng serve", "ng build", "ng test")
         Description = "Platform for building mobile and desktop web applications"
+        RequiresTailwind = $true
+        UIFramework = $true
     }
     
     "Svelte" = @{
         Files = @("svelte.config.js", "package.json")
-        Patterns = @('"svelte":', '.svelte')
+        Patterns = @('"svelte":', '\.svelte')
         Priority = 80
         Category = "Frontend"
         ConfigFile = "svelte-zero-defect.json"
         Commands = @("npm run dev", "npm run build")
         Description = "Cybernetically enhanced web apps"
+        RequiresTailwind = $true
+        UIFramework = $true
     }
     
     "SvelteKit" = @{
@@ -115,12 +125,14 @@ $FrameworkDatabase = @{
     
     "Astro" = @{
         Files = @("astro.config.mjs", "astro.config.js", "astro.config.ts")
-        Patterns = @('"astro":', '.astro')
-        Priority = 78
+        Patterns = @('"astro":', 'import.*astro')
+        Priority = 75
         Category = "Frontend"
         ConfigFile = "astro-zero-defect.json"
         Commands = @("npm run dev", "npm run build", "npm run preview")
-        Description = "The web framework for content-driven websites"
+        Description = "Static Site Generator with partial hydration"
+        RequiresTailwind = $true
+        UIFramework = $true
     }
     
     "Remix" = @{
@@ -136,12 +148,14 @@ $FrameworkDatabase = @{
     # Backend Frameworks - Node.js
     "Express.js" = @{
         Files = @("package.json")
-        Patterns = @('"express":', 'require("express")', 'from "express"')
+        Patterns = @('"express":', 'require.*express', 'import.*express')
         Priority = 85
         Category = "Backend"
         ConfigFile = "express-zero-defect.json"
         Commands = @("npm start", "npm run dev")
-        Description = "Fast, unopinionated, minimalist web framework for Node.js"
+        Description = "Fast, unopinionated, minimalist web framework"
+        RequiresTailwind = $false
+        UIFramework = $false
     }
     
     "Fastify" = @{
@@ -166,12 +180,14 @@ $FrameworkDatabase = @{
     
     "NestJS" = @{
         Files = @("nest-cli.json", "package.json")
-        Patterns = @('"@nestjs/', 'from "@nestjs/')
-        Priority = 88
+        Patterns = @('"@nestjs/core":', '"@nestjs/common":')
+        Priority = 82
         Category = "Backend"
         ConfigFile = "nestjs-zero-defect.json"
-        Commands = @("npm run start:dev", "npm run build", "npm run start:prod")
-        Description = "A progressive Node.js framework for building efficient server-side applications"
+        Commands = @("npm run start:dev", "npm run build")
+        Description = "Progressive Node.js framework for scalable server-side applications"
+        RequiresTailwind = $false
+        UIFramework = $false
     }
 
     # Backend Frameworks - Python
