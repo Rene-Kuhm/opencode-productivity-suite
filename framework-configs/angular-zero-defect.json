@@ -1,0 +1,196 @@
+{
+  "framework": "Angular",
+  "version": "17.x",
+  "category": "Frontend",
+  "description": "Zero Defect configuration for Angular projects",
+  "biome": {
+    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+    "organizeImports": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "all": true,
+        "recommended": true,
+        "correctness": {
+          "noUnusedVariables": "error"
+        },
+        "suspicious": {
+          "noConsoleLog": "warn",
+          "noDebugger": "error"
+        },
+        "performance": {
+          "noDelete": "error",
+          "noAccumulatingSpread": "error"
+        },
+        "security": {
+          "noDangerouslySetInnerHtml": "error",
+          "noGlobalEval": "error"
+        },
+        "style": {
+          "useImportType": "error",
+          "useConst": "error",
+          "useTemplate": "error"
+        }
+      }
+    },
+    "formatter": {
+      "enabled": true,
+      "formatWithErrors": false,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "lineEnding": "lf"
+    }
+  },
+  "typescript": {
+    "compilerOptions": {
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "sourceMap": true,
+      "declaration": false,
+      "downlevelIteration": true,
+      "experimentalDecorators": true,
+      "moduleResolution": "node",
+      "importHelpers": true,
+      "target": "ES2022",
+      "module": "ES2022",
+      "useDefineForClassFields": false,
+      "lib": ["ES2022", "dom"],
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "strictPropertyInitialization": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "exactOptionalPropertyTypes": true,
+      "noUncheckedIndexedAccess": true
+    },
+    "angularCompilerOptions": {
+      "enableI18nLegacyMessageIdFormat": false,
+      "strictInjectionParameters": true,
+      "strictInputAccessModifiers": true,
+      "strictTemplates": true
+    }
+  },
+  "dependencies": {
+    "required": [
+      "@angular/animations@^17.0.0",
+      "@angular/common@^17.0.0",
+      "@angular/compiler@^17.0.0",
+      "@angular/core@^17.0.0",
+      "@angular/forms@^17.0.0",
+      "@angular/platform-browser@^17.0.0",
+      "@angular/platform-browser-dynamic@^17.0.0",
+      "@angular/router@^17.0.0",
+      "rxjs@~7.8.0",
+      "tslib@^2.3.0",
+      "zone.js@~0.14.0",
+      "zod@^3.22.0"
+    ],
+    "recommended": [
+      "@biomejs/biome@^1.4.0",
+      "@angular/cdk@^17.0.0",
+      "@angular/material@^17.0.0",
+      "@ngrx/store@^17.0.0",
+      "@ngrx/effects@^17.0.0",
+      "@angular/pwa@^17.0.0"
+    ],
+    "testing": [
+      "@angular/cli@^17.0.0",
+      "@angular-devkit/build-angular@^17.0.0",
+      "@types/jasmine@~5.1.0",
+      "jasmine-core@~5.1.0",
+      "karma@~6.4.0",
+      "karma-chrome-launcher@~3.2.0",
+      "karma-coverage@~2.2.0",
+      "karma-jasmine@~5.1.0",
+      "karma-jasmine-html-reporter@~2.1.0"
+    ]
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "e2e": "ng e2e",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply",
+    "format": "biome format . --write",
+    "type-check": "ng build --dry-run",
+    "zero-check": "npm run type-check && npm run lint && npm run test -- --watch=false --browsers=ChromeHeadless"
+  },
+  "gitHooks": {
+    "pre-commit": [
+      "npm run type-check",
+      "npm run lint",
+      "npm run test -- --watch=false --browsers=ChromeHeadless",
+      "git add ."
+    ]
+  },
+  "vscode": {
+    "settings": {
+      "typescript.preferences.quotemark": "double",
+      "editor.defaultFormatter": "biomejs.biome",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "quickfix.biome": "explicit",
+        "source.organizeImports.biome": "explicit"
+      }
+    },
+    "extensions": [
+      "biomejs.biome",
+      "angular.ng-template",
+      "ms-vscode.vscode-typescript-next"
+    ]
+  },
+  "angularSpecific": {
+    "cli": {
+      "version": "17.x",
+      "defaultCollection": "@angular/material",
+      "analytics": false
+    },
+    "strictMode": true,
+    "ivy": true,
+    "budgets": [
+      {
+        "type": "initial",
+        "maximumWarning": "500kb",
+        "maximumError": "1mb"
+      },
+      {
+        "type": "anyComponentStyle",
+        "maximumWarning": "2kb",
+        "maximumError": "4kb"
+      }
+    ]
+  },
+  "securityRules": [
+    "Always validate inputs with Zod schemas",
+    "Sanitize user inputs before rendering",
+    "Use Angular's built-in XSS protection",
+    "Implement proper error handling",
+    "Validate environment variables",
+    "Use HTTPS in production",
+    "Implement proper CORS policies",
+    "Use Angular's HttpInterceptor for security headers"
+  ],
+  "performanceRules": [
+    "Use OnPush change detection strategy",
+    "Implement lazy loading for modules",
+    "Use trackBy functions in *ngFor",
+    "Optimize bundle size with tree shaking",
+    "Use Angular CLI budgets",
+    "Implement proper caching strategies",
+    "Use async pipe for observables",
+    "Minimize DOM manipulations"
+  ]
+}

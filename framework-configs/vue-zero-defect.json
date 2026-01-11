@@ -1,0 +1,170 @@
+{
+  "framework": "Vue.js",
+  "version": "3.x",
+  "category": "Frontend",
+  "description": "Zero Defect configuration for Vue.js projects",
+  "biome": {
+    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+    "organizeImports": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "all": true,
+        "recommended": true,
+        "correctness": {
+          "noUnusedVariables": "error",
+          "useExhaustiveDependencies": "error"
+        },
+        "suspicious": {
+          "noConsoleLog": "warn",
+          "noDebugger": "error"
+        },
+        "performance": {
+          "noDelete": "error",
+          "noAccumulatingSpread": "error"
+        },
+        "security": {
+          "noDangerouslySetInnerHtml": "error",
+          "noGlobalEval": "error"
+        },
+        "style": {
+          "useImportType": "error",
+          "useConst": "error",
+          "useTemplate": "error"
+        }
+      }
+    },
+    "formatter": {
+      "enabled": true,
+      "formatWithErrors": false,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "lineEnding": "lf"
+    }
+  },
+  "typescript": {
+    "compilerOptions": {
+      "target": "ES2020",
+      "useDefineForClassFields": true,
+      "lib": ["ES2020", "DOM", "DOM.Iterable"],
+      "module": "ESNext",
+      "skipLibCheck": true,
+      "moduleResolution": "bundler",
+      "allowImportingTsExtensions": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "preserve",
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noFallthroughCasesInSwitch": true,
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "strictPropertyInitialization": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noUncheckedIndexedAccess": true,
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./src/*"]
+      }
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+  },
+  "dependencies": {
+    "required": [
+      "vue@^3.3.0",
+      "typescript@^5.0.0",
+      "zod@^3.22.0"
+    ],
+    "recommended": [
+      "@biomejs/biome@^1.4.0",
+      "vite@^5.0.0",
+      "@vitejs/plugin-vue@^4.4.0",
+      "@vue/tsconfig@^0.4.0",
+      "pinia@^2.1.0",
+      "@tanstack/vue-query@^5.0.0",
+      "vue-router@^4.2.0",
+      "@vueuse/core@^10.5.0"
+    ],
+    "testing": [
+      "vitest@^1.0.0",
+      "@vue/test-utils@^2.4.0",
+      "@testing-library/vue@^8.0.0",
+      "jsdom@^23.0.0"
+    ]
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply",
+    "format": "biome format . --write",
+    "type-check": "vue-tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "zero-check": "npm run type-check && npm run lint && npm run test"
+  },
+  "gitHooks": {
+    "pre-commit": [
+      "npm run type-check",
+      "npm run lint",
+      "npm run test -- --run",
+      "git add ."
+    ]
+  },
+  "vscode": {
+    "settings": {
+      "typescript.preferences.quotemark": "double",
+      "editor.defaultFormatter": "biomejs.biome",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "quickfix.biome": "explicit",
+        "source.organizeImports.biome": "explicit"
+      }
+    },
+    "extensions": [
+      "biomejs.biome",
+      "vue.volar",
+      "vue.vscode-typescript-vue-plugin"
+    ]
+  },
+  "vueSpecific": {
+    "compositionApi": true,
+    "scriptSetup": true,
+    "singleFileComponents": true,
+    "reactivityTransform": false
+  },
+  "securityRules": [
+    "Always validate props with Zod schemas",
+    "Sanitize user inputs before rendering",
+    "Use v-html with extreme caution",
+    "Implement proper error boundaries",
+    "Validate environment variables",
+    "Use HTTPS in production",
+    "Implement proper CORS policies",
+    "Avoid storing sensitive data in localStorage"
+  ],
+  "performanceRules": [
+    "Use defineAsyncComponent for code splitting",
+    "Implement proper component optimization",
+    "Use computed properties for expensive operations",
+    "Avoid unnecessary reactivity",
+    "Optimize bundle size with tree shaking",
+    "Use v-show vs v-if appropriately",
+    "Implement virtual scrolling for large lists",
+    "Use keep-alive for expensive components"
+  ]
+}

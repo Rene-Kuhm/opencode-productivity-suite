@@ -1,0 +1,187 @@
+{
+  "framework": "Express.js",
+  "version": "4.x",
+  "category": "Backend",
+  "description": "Zero Defect configuration for Express.js projects",
+  "biome": {
+    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+    "organizeImports": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "all": true,
+        "recommended": true,
+        "correctness": {
+          "noUnusedVariables": "error",
+          "noUndeclaredVariables": "error"
+        },
+        "suspicious": {
+          "noConsoleLog": "warn",
+          "noDebugger": "error",
+          "noGlobalObjectCalls": "error"
+        },
+        "performance": {
+          "noDelete": "error",
+          "noAccumulatingSpread": "error"
+        },
+        "security": {
+          "noGlobalEval": "error"
+        },
+        "style": {
+          "useImportType": "error",
+          "useConst": "error",
+          "useTemplate": "error"
+        }
+      }
+    },
+    "formatter": {
+      "enabled": true,
+      "formatWithErrors": false,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "lineEnding": "lf"
+    }
+  },
+  "typescript": {
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "commonjs",
+      "lib": ["ES2020"],
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "declaration": true,
+      "declarationMap": true,
+      "sourceMap": true,
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "strictPropertyInitialization": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noUncheckedIndexedAccess": true,
+      "noFallthroughCasesInSwitch": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  },
+  "dependencies": {
+    "required": [
+      "express@^4.18.0",
+      "@types/express@^4.17.0",
+      "typescript@^5.0.0",
+      "zod@^3.22.0"
+    ],
+    "recommended": [
+      "@biomejs/biome@^1.4.0",
+      "helmet@^7.0.0",
+      "cors@^2.8.0",
+      "compression@^1.7.0",
+      "morgan@^1.10.0",
+      "dotenv@^16.3.0",
+      "express-rate-limit@^7.0.0",
+      "express-validator@^7.0.0"
+    ],
+    "development": [
+      "nodemon@^3.0.0",
+      "ts-node@^10.9.0",
+      "concurrently@^8.2.0"
+    ],
+    "testing": [
+      "vitest@^1.0.0",
+      "supertest@^6.3.0",
+      "@types/supertest@^2.0.0"
+    ]
+  },
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply",
+    "format": "biome format . --write",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "zero-check": "npm run type-check && npm run lint && npm run test"
+  },
+  "gitHooks": {
+    "pre-commit": [
+      "npm run type-check",
+      "npm run lint",
+      "npm run test -- --run",
+      "git add ."
+    ]
+  },
+  "vscode": {
+    "settings": {
+      "typescript.preferences.quotemark": "double",
+      "editor.defaultFormatter": "biomejs.biome",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "quickfix.biome": "explicit",
+        "source.organizeImports.biome": "explicit"
+      }
+    },
+    "extensions": [
+      "biomejs.biome",
+      "ms-vscode.vscode-typescript-next"
+    ]
+  },
+  "environmentVariables": {
+    "required": [
+      "NODE_ENV",
+      "PORT"
+    ],
+    "optional": [
+      "DATABASE_URL",
+      "JWT_SECRET",
+      "API_KEY"
+    ]
+  },
+  "securityRules": [
+    "Always validate request bodies with Zod schemas",
+    "Use helmet middleware for security headers",
+    "Implement proper CORS policies",
+    "Use express-rate-limit for DoS protection",
+    "Sanitize user inputs",
+    "Validate environment variables",
+    "Use HTTPS in production",
+    "Implement proper authentication and authorization",
+    "Log security events",
+    "Use secure session management"
+  ],
+  "performanceRules": [
+    "Use compression middleware",
+    "Implement proper caching strategies",
+    "Use connection pooling for databases",
+    "Optimize database queries",
+    "Use clustering for CPU-intensive tasks",
+    "Monitor memory usage",
+    "Implement request timeout",
+    "Use CDN for static assets"
+  ],
+  "errorHandlingRules": [
+    "Always use async/await with try-catch",
+    "Implement global error handler middleware",
+    "Log errors with proper context",
+    "Return appropriate HTTP status codes",
+    "Never expose internal errors to clients",
+    "Implement graceful shutdown",
+    "Use proper error types",
+    "Handle unhandled promise rejections"
+  ]
+}

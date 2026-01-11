@@ -1,0 +1,221 @@
+{
+  "framework": "Next.js",
+  "version": "15.x",
+  "category": "Frontend",
+  "description": "Zero Defect configuration for Next.js projects",
+  "biome": {
+    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+    "organizeImports": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "all": true,
+        "recommended": true,
+        "correctness": {
+          "noUnusedVariables": "error",
+          "useExhaustiveDependencies": "error",
+          "useHookAtTopLevel": "error"
+        },
+        "suspicious": {
+          "noArrayIndexKey": "error",
+          "noConsoleLog": "warn",
+          "noDebugger": "error"
+        },
+        "performance": {
+          "noDelete": "error",
+          "noAccumulatingSpread": "error"
+        },
+        "security": {
+          "noDangerouslySetInnerHtml": "error",
+          "noGlobalEval": "error"
+        },
+        "style": {
+          "useImportType": "error",
+          "useConst": "error",
+          "useTemplate": "error"
+        },
+        "a11y": {
+          "useAltText": "error",
+          "useAnchorContent": "error",
+          "useButtonType": "error",
+          "useKeyWithClickEvents": "error",
+          "useValidAnchor": "error"
+        },
+        "nursery": {
+          "useSortedClasses": "error"
+        }
+      }
+    },
+    "formatter": {
+      "enabled": true,
+      "formatWithErrors": false,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "lineEnding": "lf"
+    }
+  },
+  "typescript": {
+    "compilerOptions": {
+      "target": "ES2022",
+      "lib": ["dom", "dom.iterable", "es6"],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      "module": "esnext",
+      "moduleResolution": "bundler",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "jsx": "preserve",
+      "incremental": true,
+      "plugins": [
+        {
+          "name": "next"
+        }
+      ],
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./src/*"],
+        "@/components/*": ["./src/components/*"],
+        "@/lib/*": ["./src/lib/*"],
+        "@/styles/*": ["./src/styles/*"],
+        "@/types/*": ["./src/types/*"]
+      },
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "strictPropertyInitialization": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "exactOptionalPropertyTypes": true,
+      "noImplicitOverride": true,
+      "noPropertyAccessFromIndexSignature": true,
+      "noUncheckedIndexedAccess": true,
+      "noFallthroughCasesInSwitch": true
+    },
+    "include": [
+      "next-env.d.ts",
+      "**/*.ts",
+      "**/*.tsx",
+      ".next/types/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules"
+    ]
+  },
+  "dependencies": {
+    "required": [
+      "next@^15.0.0",
+      "react@^18.0.0",
+      "react-dom@^18.0.0",
+      "@types/node@^20.0.0",
+      "@types/react@^18.0.0",
+      "@types/react-dom@^18.0.0",
+      "typescript@^5.0.0",
+      "zod@^3.22.0"
+    ],
+    "recommended": [
+      "@biomejs/biome@^1.4.0",
+      "tailwindcss@^3.4.0",
+      "@tailwindcss/typography@^0.5.0",
+      "@tailwindcss/forms@^0.5.0",
+      "autoprefixer@^10.4.0",
+      "postcss@^8.4.0",
+      "@tanstack/react-query@^5.0.0",
+      "zustand@^4.4.0",
+      "react-hook-form@^7.47.0",
+      "@hookform/resolvers@^3.3.0"
+    ],
+    "testing": [
+      "vitest@^1.0.0",
+      "@vitejs/plugin-react@^4.0.0",
+      "@testing-library/react@^14.0.0",
+      "@testing-library/jest-dom@^6.0.0",
+      "@testing-library/user-event@^14.0.0",
+      "jsdom@^23.0.0"
+    ]
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply",
+    "format": "biome format . --write",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "zero-check": "npm run type-check && npm run lint && npm run test"
+  },
+  "gitHooks": {
+    "pre-commit": [
+      "npm run type-check",
+      "npm run lint",
+      "npm run test -- --run",
+      "git add ."
+    ]
+  },
+  "vscode": {
+    "settings": {
+      "typescript.preferences.quotemark": "double",
+      "editor.defaultFormatter": "biomejs.biome",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "quickfix.biome": "explicit",
+        "source.organizeImports.biome": "explicit"
+      }
+    },
+    "extensions": [
+      "biomejs.biome",
+      "bradlc.vscode-tailwindcss",
+      "ms-vscode.vscode-typescript-next"
+    ]
+  },
+  "environmentVariables": {
+    "required": [],
+    "optional": [
+      "NEXT_PUBLIC_APP_URL",
+      "DATABASE_URL",
+      "NEXTAUTH_SECRET",
+      "NEXTAUTH_URL"
+    ]
+  },
+  "securityRules": [
+    "Always validate environment variables with Zod schemas",
+    "Use Server Actions for form submissions",
+    "Implement proper error boundaries",
+    "Use next/image for all images",
+    "Implement proper SEO with metadata API",
+    "Use HTTPS in production",
+    "Sanitize user inputs",
+    "Implement proper CORS policies"
+  ],
+  "performanceRules": [
+    "Use Server Components by default",
+    "Minimize use of 'use client' directive",
+    "Implement proper loading states",
+    "Use dynamic imports for large components",
+    "Optimize images with next/image",
+    "Implement proper caching strategies",
+    "Use React.memo for expensive components",
+    "Avoid unnecessary re-renders"
+  ],
+  "accessibilityRules": [
+    "Always provide alt text for images",
+    "Use semantic HTML elements",
+    "Implement proper focus management",
+    "Ensure keyboard navigation",
+    "Use proper heading hierarchy",
+    "Implement ARIA labels where needed",
+    "Test with screen readers",
+    "Maintain proper color contrast"
+  ]
+}
