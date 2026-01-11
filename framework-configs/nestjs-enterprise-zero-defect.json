@@ -1,0 +1,382 @@
+{
+  "framework": "NestJS",
+  "version": "10.x",
+  "category": "Backend",
+  "level": "Enterprise",
+  "description": "Enterprise-grade NestJS configuration with advanced patterns",
+  
+  "biome": {
+    "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
+    "organizeImports": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true,
+      "rules": {
+        "all": true,
+        "recommended": true,
+        "correctness": {
+          "noUnusedVariables": "error",
+          "useExhaustiveDependencies": "error",
+          "noUnreachable": "error"
+        },
+        "suspicious": {
+          "noConsoleLog": "error",
+          "noDebugger": "error",
+          "noAsyncPromiseExecutor": "error"
+        },
+        "performance": {
+          "noDelete": "error",
+          "noAccumulatingSpread": "error"
+        },
+        "security": {
+          "noDangerouslySetInnerHtml": "error",
+          "noGlobalEval": "error"
+        },
+        "style": {
+          "useImportType": "error",
+          "useConst": "error",
+          "useTemplate": "error"
+        }
+      }
+    },
+    "formatter": {
+      "enabled": true,
+      "formatWithErrors": false,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "lineEnding": "lf"
+    }
+  },
+  
+  "typescript": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "declaration": true,
+      "removeComments": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "target": "ES2020",
+      "sourceMap": true,
+      "outDir": "./dist",
+      "baseUrl": "./",
+      "incremental": true,
+      "skipLibCheck": true,
+      "strictNullChecks": true,
+      "noImplicitAny": true,
+      "strictBindCallApply": true,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "strictFunctionTypes": true,
+      "strictPropertyInitialization": true,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitOverride": true,
+      "exactOptionalPropertyTypes": true,
+      "noUncheckedIndexedAccess": true,
+      "paths": {
+        "@/*": ["./src/*"],
+        "@domain/*": ["./src/domain/*"],
+        "@infrastructure/*": ["./src/infrastructure/*"],
+        "@application/*": ["./src/application/*"]
+      }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+  },
+  
+  "dependencies": {
+    "core": [
+      "@nestjs/core@^10.0.0",
+      "@nestjs/common@^10.0.0",
+      "@nestjs/platform-express@^10.0.0",
+      "reflect-metadata@^0.1.13",
+      "rxjs@^7.8.1"
+    ],
+    "enterprise": [
+      "@nestjs/cqrs@^10.0.0",
+      "@nestjs/microservices@^10.0.0",
+      "@nestjs/event-emitter@^2.0.0",
+      "@nestjs/bull@^10.0.0",
+      "@nestjs/cache-manager@^2.0.0",
+      "@nestjs/schedule@^4.0.0",
+      "@nestjs/terminus@^10.0.0"
+    ],
+    "database": [
+      "@nestjs/typeorm@^10.0.0",
+      "@nestjs/mongoose@^10.0.0",
+      "typeorm@^0.3.0",
+      "pg@^8.11.0",
+      "@types/pg@^8.10.0",
+      "redis@^4.6.0",
+      "ioredis@^5.3.0"
+    ],
+    "security": [
+      "@nestjs/passport@^10.0.0",
+      "@nestjs/jwt@^10.0.0",
+      "@nestjs/throttler@^5.0.0",
+      "passport@^0.6.0",
+      "passport-jwt@^4.0.1",
+      "passport-local@^1.0.0",
+      "bcrypt@^5.1.0",
+      "@types/bcrypt@^5.0.0",
+      "helmet@^7.0.0"
+    ],
+    "validation": [
+      "class-validator@^0.14.0",
+      "class-transformer@^0.5.1",
+      "zod@^3.22.0"
+    ],
+    "observability": [
+      "@nestjs/swagger@^7.0.0",
+      "winston@^3.10.0",
+      "nest-winston@^1.9.0",
+      "@opentelemetry/api@^1.6.0",
+      "@opentelemetry/sdk-node@^0.43.0",
+      "@opentelemetry/instrumentation-nestjs-core@^0.34.0"
+    ],
+    "testing": [
+      "@nestjs/testing@^10.0.0",
+      "@types/jest@^29.5.0",
+      "@types/supertest@^2.0.12",
+      "jest@^29.5.0",
+      "supertest@^6.3.0",
+      "ts-jest@^29.1.0"
+    ],
+    "development": [
+      "@biomejs/biome@^1.4.0",
+      "typescript@^5.0.0",
+      "@types/node@^20.0.0",
+      "ts-loader@^9.4.0",
+      "ts-node@^10.9.0",
+      "tsconfig-paths@^4.2.0",
+      "source-map-support@^0.5.21"
+    ]
+  },
+  
+  "projectStructure": {
+    "src/": {
+      "domain/": {
+        "description": "Domain layer - pure business logic",
+        "entities/": "Domain entities with business rules",
+        "value-objects/": "Immutable value objects",
+        "services/": "Domain services for complex operations",
+        "events/": "Domain events for important occurrences",
+        "repositories/": "Repository interfaces"
+      },
+      "application/": {
+        "description": "Application layer - use cases and orchestration",
+        "commands/": "CQRS command handlers",
+        "queries/": "CQRS query handlers",
+        "services/": "Application services",
+        "dtos/": "Data transfer objects",
+        "interfaces/": "Application interfaces"
+      },
+      "infrastructure/": {
+        "description": "Infrastructure layer - external concerns",
+        "persistence/": "Database implementations",
+        "messaging/": "Message queue implementations",
+        "external-services/": "Third-party service integrations",
+        "config/": "Configuration modules"
+      },
+      "presentation/": {
+        "description": "Presentation layer - API controllers",
+        "controllers/": "HTTP controllers",
+        "graphql/": "GraphQL resolvers",
+        "middleware/": "Custom middleware",
+        "filters/": "Exception filters",
+        "guards/": "Authorization guards",
+        "interceptors/": "Request/response interceptors"
+      }
+    }
+  },
+  
+  "architecturePatterns": {
+    "ddd": {
+      "enabled": true,
+      "patterns": [
+        "Entities with encapsulated business logic",
+        "Value objects for data integrity",
+        "Aggregates as consistency boundaries",
+        "Repository pattern for data access",
+        "Domain events for loose coupling"
+      ]
+    },
+    "cqrs": {
+      "enabled": true,
+      "implementation": "@nestjs/cqrs",
+      "patterns": [
+        "Commands for state mutations",
+        "Queries for data retrieval", 
+        "Event sourcing for audit trail",
+        "Saga pattern for long-running processes"
+      ]
+    },
+    "hexagonal": {
+      "enabled": true,
+      "description": "Ports and adapters architecture",
+      "implementation": "Clear separation between layers"
+    },
+    "microservices": {
+      "enabled": false,
+      "readyFor": true,
+      "description": "Modular structure ready for microservices decomposition"
+    }
+  },
+  
+  "enterpriseFeatures": {
+    "security": {
+      "authentication": {
+        "jwt": "JWT-based stateless authentication",
+        "oauth2": "OAuth 2.0 / OpenID Connect integration",
+        "mfa": "Multi-factor authentication support"
+      },
+      "authorization": {
+        "rbac": "Role-based access control",
+        "guards": "Route-level authorization guards",
+        "policies": "Fine-grained permission policies"
+      },
+      "dataProtection": {
+        "encryption": "Field-level encryption for sensitive data",
+        "hashing": "bcrypt for password hashing",
+        "sanitization": "Input sanitization and validation"
+      }
+    },
+    
+    "observability": {
+      "logging": {
+        "structured": "JSON structured logging with Winston",
+        "correlation": "Request correlation IDs",
+        "levels": "Configurable log levels per environment"
+      },
+      "monitoring": {
+        "healthChecks": "Terminus health checks",
+        "metrics": "Custom business metrics",
+        "tracing": "OpenTelemetry distributed tracing"
+      },
+      "documentation": {
+        "swagger": "Automatic OpenAPI documentation",
+        "compodoc": "Code documentation generation"
+      }
+    },
+    
+    "performance": {
+      "caching": {
+        "redis": "Redis for distributed caching",
+        "inMemory": "In-memory caching for hot data",
+        "strategies": "Cache-aside, write-through patterns"
+      },
+      "async": {
+        "queues": "Bull/BullMQ for background jobs",
+        "events": "Event-driven async processing",
+        "streaming": "Real-time data streaming"
+      }
+    },
+    
+    "resilience": {
+      "circuitBreaker": "Prevent cascading failures",
+      "retry": "Exponential backoff retry logic",
+      "timeout": "Request timeout handling",
+      "bulkhead": "Resource isolation patterns"
+    }
+  },
+  
+  "scripts": {
+    "build": "nest build",
+    "format": "biome format . --write",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --apply",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "zero-check": "npm run lint && npm run test && npm run build"
+  },
+  
+  "gitHooks": {
+    "pre-commit": [
+      "npm run lint:fix",
+      "npm run test -- --passWithNoTests",
+      "git add ."
+    ],
+    "pre-push": [
+      "npm run test",
+      "npm run build"
+    ]
+  },
+  
+  "vscode": {
+    "settings": {
+      "typescript.preferences.quotemark": "single",
+      "editor.defaultFormatter": "biomejs.biome",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "quickfix.biome": "explicit",
+        "source.organizeImports.biome": "explicit"
+      }
+    },
+    "extensions": [
+      "biomejs.biome",
+      "ms-vscode.vscode-typescript-next",
+      "bradlc.vscode-tailwindcss"
+    ]
+  },
+  
+  "securityRules": [
+    "Never store secrets in code - use environment variables",
+    "Always validate and sanitize user inputs",
+    "Implement proper authentication and authorization",
+    "Use HTTPS in production",
+    "Enable CORS with specific origins",
+    "Implement rate limiting for APIs",
+    "Hash passwords with bcrypt (min 12 rounds)",
+    "Use helmet for security headers",
+    "Implement request validation with class-validator",
+    "Log security events and failed authentication attempts",
+    "Implement proper session management",
+    "Use parameterized queries to prevent SQL injection"
+  ],
+  
+  "performanceRules": [
+    "Use Redis for caching frequently accessed data",
+    "Implement database connection pooling",
+    "Use async/await for non-blocking operations",
+    "Implement pagination for large datasets",
+    "Use indexing for frequently queried database fields",
+    "Implement compression for API responses",
+    "Use CDN for static asset delivery",
+    "Implement proper error handling to prevent memory leaks",
+    "Use streaming for large file operations",
+    "Monitor and optimize database queries",
+    "Implement graceful shutdown handling",
+    "Use worker processes for CPU-intensive tasks"
+  ],
+  
+  "enterpriseChecklist": [
+    "Domain-driven design implementation",
+    "CQRS pattern with command/query separation",
+    "Event sourcing for audit trail",
+    "Microservices-ready architecture",
+    "Comprehensive security implementation",
+    "Distributed tracing and monitoring", 
+    "Health checks and graceful shutdown",
+    "Database migrations and versioning",
+    "API documentation with OpenAPI/Swagger",
+    "Comprehensive test coverage (unit, integration, e2e)",
+    "CI/CD pipeline configuration",
+    "Production deployment configuration",
+    "Error handling and logging strategy",
+    "Performance monitoring and optimization"
+  ]
+}
