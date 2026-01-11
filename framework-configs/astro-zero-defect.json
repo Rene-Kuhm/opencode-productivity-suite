@@ -1,8 +1,8 @@
 {
-  "framework": "Vue.js",
-  "version": "3.x",
+  "framework": "Astro",
+  "version": "4.x",
   "category": "Frontend",
-  "description": "Zero Defect configuration for Vue.js projects",
+  "description": "Zero Defect configuration for Astro projects",
   "biome": {
     "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
     "organizeImports": {
@@ -57,7 +57,6 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "noEmit": true,
-      "jsx": "preserve",
       "strict": true,
       "noUnusedLocals": true,
       "noUnusedParameters": true,
@@ -75,15 +74,17 @@
       "noUncheckedIndexedAccess": true,
       "baseUrl": ".",
       "paths": {
-        "@/*": ["./src/*"]
+        "@/*": ["./src/*"],
+        "@components/*": ["./src/components/*"],
+        "@layouts/*": ["./src/layouts/*"]
       }
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"],
+    "exclude": ["node_modules/**/*", "dist/**/*"]
   },
   "dependencies": {
     "required": [
-      "vue@^3.3.0",
+      "astro@^4.0.0",
       "typescript@^5.0.0",
       "zod@^3.22.0"
     ],
@@ -94,29 +95,25 @@
       "@tailwindcss/forms@latest",
       "autoprefixer@latest",
       "postcss@latest",
-      "vite@^5.0.0",
-      "@vitejs/plugin-vue@^4.4.0",
-      "@vue/tsconfig@^0.4.0",
-      "pinia@^2.1.0",
-      "@tanstack/vue-query@^5.0.0",
-      "vue-router@^4.2.0",
-      "@vueuse/core@^10.5.0"
+      "@astrojs/check@^0.3.0",
+      "@astrojs/ts-plugin@^1.0.0"
     ],
     "testing": [
       "vitest@^1.0.0",
-      "@vue/test-utils@^2.4.0",
-      "@testing-library/vue@^8.0.0",
+      "@testing-library/dom@^9.0.0",
+      "@testing-library/jest-dom@^6.0.0",
       "jsdom@^23.0.0"
     ]
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
     "lint": "biome check .",
     "lint:fix": "biome check . --apply",
     "format": "biome format . --write",
-    "type-check": "vue-tsc --noEmit",
+    "type-check": "astro check",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
@@ -142,37 +139,18 @@
     },
     "extensions": [
       "biomejs.biome",
-      "vue.volar",
-      "vue.vscode-typescript-vue-plugin"
+      "astro-build.astro-vscode"
     ]
   },
   "uiComponents": [
     {
-      "name": "Vuetify",
-      "description": "Vue.js Material Design component framework",
-      "install": "npm install vuetify",
-      "popularity": 90,
-      "useCase": "material-design-apps",
-      "documentation": "https://vuetifyjs.com/",
+      "name": "Astro UI",
+      "description": "Component library optimized for Astro",
+      "install": "npm install @astrojs/ui",
+      "popularity": 70,
+      "useCase": "static-site-generation",
+      "documentation": "https://astro.build/docs/",
       "priority": "recommended"
-    },
-    {
-      "name": "PrimeVue",
-      "description": "Rich set of UI components for Vue.js",
-      "install": "npm install primevue primeicons",
-      "popularity": 80,
-      "useCase": "business-applications",
-      "documentation": "https://www.primefaces.org/primevue/",
-      "priority": "optional"
-    },
-    {
-      "name": "Quasar",
-      "description": "High-performance Vue.js based framework",
-      "install": "npm install -g @quasar/cli && quasar create",
-      "popularity": 85,
-      "useCase": "cross-platform-apps",
-      "documentation": "https://quasar.dev/",
-      "priority": "optional"
     }
   ],
   "tailwindHacker": {
@@ -200,30 +178,31 @@
       "responsive-utilities"
     ]
   },
-  "vueSpecific": {
-    "compositionApi": true,
-    "scriptSetup": true,
-    "singleFileComponents": true,
-    "reactivityTransform": false
+  "astroSpecific": {
+    "islands": true,
+    "partialHydration": true,
+    "zeroJS": true,
+    "staticGeneration": true,
+    "componentFrameworks": ["react", "vue", "svelte", "preact"]
   },
   "securityRules": [
-    "Always validate props with Zod schemas",
-    "Sanitize user inputs before rendering",
-    "Use v-html with extreme caution",
-    "Implement proper error boundaries",
-    "Validate environment variables",
+    "Sanitize data before server-side rendering",
+    "Validate environment variables at build time",
+    "Use Content Security Policy headers",
+    "Implement proper input validation",
+    "Avoid client-side secrets in static builds",
     "Use HTTPS in production",
     "Implement proper CORS policies",
-    "Avoid storing sensitive data in localStorage"
+    "Validate external data sources"
   ],
   "performanceRules": [
-    "Use defineAsyncComponent for code splitting",
-    "Implement proper component optimization",
-    "Use computed properties for expensive operations",
-    "Avoid unnecessary reactivity",
-    "Optimize bundle size with tree shaking",
-    "Use v-show vs v-if appropriately",
-    "Implement virtual scrolling for large lists",
-    "Use keep-alive for expensive components"
+    "Use partial hydration for interactive components",
+    "Optimize images with @astrojs/image",
+    "Implement proper code splitting",
+    "Use static generation when possible",
+    "Minimize JavaScript bundle size",
+    "Leverage Astro's zero-JS by default",
+    "Use component frameworks only when needed",
+    "Implement proper caching strategies"
   ]
 }

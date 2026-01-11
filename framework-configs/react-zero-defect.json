@@ -145,13 +145,31 @@
         "documentation": "https://ant.design/",
         "priority": "optional"
       }
+    ]
+  },
+  "tailwindHacker": {
+    "autoUpgrade": true,
+    "version": "latest",
+    "features": [
+      "css-first-config",
+      "container-queries", 
+      "color-mix-functions",
+      "cascade-layers",
+      "property-api",
+      "dynamic-utilities"
     ],
-    "testing": [
-      "vitest@^1.0.0",
-      "@testing-library/react@^14.0.0",
-      "@testing-library/jest-dom@^6.0.0",
-      "@testing-library/user-event@^14.0.0",
-      "jsdom@^23.0.0"
+    "optimizations": {
+      "purgeUnused": true,
+      "minifyCSS": true,
+      "treeshaking": true,
+      "contentScanning": "advanced"
+    },
+    "hackerUtils": [
+      "glass-morphism",
+      "neomorphism", 
+      "dynamic-gradients",
+      "advanced-animations",
+      "responsive-utilities"
     ]
   },
   "scripts": {
