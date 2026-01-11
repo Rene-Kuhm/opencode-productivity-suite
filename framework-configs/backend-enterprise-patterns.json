@@ -1,0 +1,255 @@
+{
+  "backendExpertSystem": {
+    "version": "1.0.0",
+    "description": "Enterprise-grade backend patterns and configurations",
+    
+    "architecturePatterns": {
+      "domainDrivenDesign": {
+        "description": "Tactical and strategic DDD patterns",
+        "patterns": {
+          "entities": {
+            "definition": "Objects with identity and lifecycle",
+            "implementation": "@Entity() decorator with ID field",
+            "rules": ["Encapsulate business logic", "Maintain invariants", "Raise domain events"]
+          },
+          "valueObjects": {
+            "definition": "Immutable objects without identity",
+            "implementation": "readonly properties, factory methods",
+            "rules": ["Immutable", "Self-validating", "Comparable by value"]
+          },
+          "aggregates": {
+            "definition": "Consistency boundaries with aggregate roots",
+            "implementation": "Repository pattern, aggregate root entity",
+            "rules": ["Single entry point", "Consistency boundary", "Eventual consistency between aggregates"]
+          },
+          "repositories": {
+            "definition": "Collection-like interface for domain objects",
+            "implementation": "Interface in domain, implementation in infrastructure",
+            "rules": ["Domain interface", "Infrastructure implementation", "Unit of work pattern"]
+          },
+          "domainServices": {
+            "definition": "Operations that don't fit in entities",
+            "implementation": "@DomainService() with business logic",
+            "rules": ["Stateless", "Pure domain logic", "No infrastructure dependencies"]
+          },
+          "domainEvents": {
+            "definition": "Something important that happened in domain",
+            "implementation": "Event class with @DomainEvent() decorator",
+            "rules": ["Past tense naming", "Rich with domain data", "Immutable"]
+          }
+        }
+      },
+      
+      "cqrs": {
+        "description": "Command Query Responsibility Segregation",
+        "components": {
+          "commands": {
+            "purpose": "Mutate system state",
+            "structure": "Command class with validation, CommandHandler",
+            "patterns": ["Command pattern", "Handler pattern", "Validation"]
+          },
+          "queries": {
+            "purpose": "Read system state",
+            "structure": "Query class, QueryHandler, read models",
+            "patterns": ["Query pattern", "Handler pattern", "Projection"]
+          },
+          "events": {
+            "purpose": "Communicate state changes",
+            "structure": "Event class, EventHandler, event store",
+            "patterns": ["Event sourcing", "Pub/sub", "Eventual consistency"]
+          }
+        },
+        "benefits": ["Independent scaling", "Optimized read/write models", "Event-driven architecture"]
+      },
+      
+      "eventSourcing": {
+        "description": "Store events instead of current state",
+        "components": {
+          "eventStore": {
+            "purpose": "Persist events in append-only log",
+            "implementation": "EventStore database or PostgreSQL with JSONB",
+            "patterns": ["Append-only", "Immutable", "Time-ordered"]
+          },
+          "aggregates": {
+            "purpose": "Rebuild state from events",
+            "implementation": "Apply events to rebuild current state",
+            "patterns": ["Event application", "Snapshot optimization", "Replay"]
+          },
+          "projections": {
+            "purpose": "Create read models from events",
+            "implementation": "Event handlers that update read models",
+            "patterns": ["Eventual consistency", "Materialized views", "CQRS"]
+          }
+        },
+        "benefits": ["Complete audit trail", "Time travel", "Event replay", "Debugging capabilities"]
+      },
+      
+      "hexagonalArchitecture": {
+        "description": "Ports and adapters architecture",
+        "layers": {
+          "domain": {
+            "purpose": "Core business logic",
+            "contains": ["Entities", "Value objects", "Domain services", "Domain events"],
+            "dependencies": "None (pure business logic)"
+          },
+          "application": {
+            "purpose": "Orchestration and use cases",
+            "contains": ["Application services", "Commands", "Queries", "DTOs"],
+            "dependencies": "Domain layer only"
+          },
+          "infrastructure": {
+            "purpose": "External concerns implementation",
+            "contains": ["Repositories", "HTTP controllers", "Database", "Message queues"],
+            "dependencies": "Application and domain layers"
+          }
+        },
+        "ports": {
+          "inbound": "API controllers, message consumers",
+          "outbound": "Repository interfaces, external service interfaces"
+        },
+        "adapters": {
+          "inbound": "HTTP adapters, message adapters",
+          "outbound": "Database adapters, external service adapters"
+        }
+      }
+    },
+    
+    "enterprisePatterns": {
+      "microservices": {
+        "decomposition": {
+          "byBusinessCapability": "Align services with business functions",
+          "byDomain": "Use DDD bounded contexts as service boundaries",
+          "byTeam": "Conway's law - service per team"
+        },
+        "communication": {
+          "synchronous": {
+            "restApi": "HTTP REST with OpenAPI documentation",
+            "graphql": "Single endpoint with flexible queries",
+            "grpc": "High-performance binary protocol"
+          },
+          "asynchronous": {
+            "eventBus": "Publish/subscribe event messaging",
+            "messageQueues": "Point-to-point reliable messaging",
+            "eventStreaming": "Apache Kafka for high-throughput events"
+          }
+        },
+        "dataManagement": {
+          "databasePerService": "Each service owns its data",
+          "sagaPattern": "Manage distributed transactions",
+          "eventualConsistency": "Accept temporary inconsistency"
+        },
+        "deploymentPatterns": {
+          "servicePerContainer": "Docker container per service",
+          "servicePerVM": "Virtual machine per service",
+          "serviceMesh": "Istio for service-to-service communication"
+        }
+      },
+      
+      "apiGateway": {
+        "responsibilities": [
+          "Request routing",
+          "Authentication and authorization",
+          "Rate limiting",
+          "Request/response transformation",
+          "Circuit breaking",
+          "Monitoring and analytics"
+        ],
+        "implementations": {
+          "kong": "Open-source API gateway",
+          "envoyProxy": "Modern edge and service proxy",
+          "awsApiGateway": "Fully managed API gateway",
+          "nginxPlus": "Commercial NGINX with API gateway features"
+        }
+      },
+      
+      "circuitBreaker": {
+        "purpose": "Prevent cascading failures",
+        "states": {
+          "closed": "Normal operation, requests pass through",
+          "open": "Failure detected, requests fail fast",
+          "halfOpen": "Testing if service recovered"
+        },
+        "configuration": {
+          "failureThreshold": "Number of failures to open circuit",
+          "timeout": "How long circuit stays open",
+          "successThreshold": "Successes needed to close circuit"
+        }
+      }
+    },
+    
+    "observability": {
+      "distributed-tracing": {
+        "purpose": "Track requests across services",
+        "implementation": "OpenTelemetry with Jaeger",
+        "concepts": {
+          "trace": "End-to-end request journey",
+          "span": "Individual operation within trace",
+          "baggage": "Cross-cutting concerns data"
+        }
+      },
+      "metrics": {
+        "types": {
+          "counter": "Monotonically increasing values",
+          "gauge": "Values that can go up or down",
+          "histogram": "Distribution of values",
+          "summary": "Quantiles over sliding time window"
+        },
+        "golden-signals": {
+          "latency": "Time to process requests",
+          "traffic": "Request rate",
+          "errors": "Error rate",
+          "saturation": "Resource utilization"
+        }
+      },
+      "logging": {
+        "structured": "JSON logs with correlation IDs",
+        "correlation": "Trace requests across services",
+        "aggregation": "Centralized log collection",
+        "alerting": "Automated issue detection"
+      }
+    },
+    
+    "security": {
+      "authentication": {
+        "oauth2": "Industry standard authorization framework",
+        "openidConnect": "Authentication layer on OAuth 2.0",
+        "jwt": "JSON Web Tokens for stateless authentication"
+      },
+      "authorization": {
+        "rbac": "Role-based access control",
+        "abac": "Attribute-based access control",
+        "policyEngine": "Open Policy Agent for fine-grained policies"
+      },
+      "dataProtection": {
+        "encryption": {
+          "atRest": "AES-256 for stored data",
+          "inTransit": "TLS 1.3 for network communication",
+          "keyManagement": "HashiCorp Vault or cloud KMS"
+        },
+        "privacy": {
+          "gdpr": "EU General Data Protection Regulation compliance",
+          "ccpa": "California Consumer Privacy Act compliance",
+          "dataClassification": "Sensitive data identification and handling"
+        }
+      }
+    },
+    
+    "deployment": {
+      "containerization": {
+        "docker": "Container runtime and image format",
+        "kubernetes": "Container orchestration platform",
+        "istio": "Service mesh for microservices communication"
+      },
+      "cicd": {
+        "gitops": "Git as single source of truth",
+        "argocd": "Declarative continuous deployment",
+        "tekton": "Kubernetes-native CI/CD"
+      },
+      "infrastructure": {
+        "terraform": "Infrastructure as Code",
+        "helm": "Kubernetes package manager",
+        "prometheus": "Monitoring and alerting"
+      }
+    }
+  }
+}

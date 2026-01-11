@@ -1,6 +1,6 @@
-# 🚀 OpenCode Productivity Suite v2.3
+# 🚀 OpenCode Productivity Suite v3.0
 
-**The Most Advanced Development Productivity System with Smart Tailwind Detection & Component Library Intelligence**
+**The Most Advanced Development Productivity System with Enterprise Backend Expert & Smart Detection**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OpenCode](https://img.shields.io/badge/OpenCode-Revolutionized-blue.svg)](https://opencode.dev)
@@ -17,6 +17,7 @@ Transform your development workflow with the **most comprehensive productivity s
 - **🎯 Intelligent Commands**: Context-aware AI analysis and optimization
 - **🎨 Component Library Intelligence**: Auto-installs top-tier UI libraries (Material-UI, shadcn/ui, etc.)
 - **🚀 Smart Tailwind Detection**: Automatically installs Tailwind CSS v4.1+ only for UI frameworks
+- **🏗️ Backend Expert System**: Enterprise-grade backend generation with DDD, CQRS, microservices
 - **🧠 Tailwind CSS Hacker System**: Ultra-advanced configuration with modern CSS features
 - **📊 Real-Time Team Dashboard**: Live productivity metrics and Zero Defect scoring
 - **⚡ 30-Second Setup**: Complete production environment in one command
@@ -36,6 +37,7 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 - ✅ AI-powered intelligent commands ready to use
 - ✅ Smart Tailwind CSS v4.1+ detection (only for UI frameworks)
 - ✅ Component library auto-installation (Material-UI, shadcn/ui, Angular Material, etc.)
+- ✅ Enterprise backend generation (DDD, CQRS, Event Sourcing, microservices)
 - ✅ Real-time team dashboard with Zero Defect scoring
 - ✅ Framework-specific configurations applied automatically
 - ✅ Desktop shortcuts and production-ready environment
@@ -59,6 +61,7 @@ curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/
 /validate-setup           # Comprehensive setup validation
 /suggest-patterns --Components # Get top-tier component library recommendations
 /tailwind-hacker              # Ultra-advanced Tailwind CSS v4.1+ management
+/backend-expert              # Enterprise backend generation (DDD, CQRS, microservices)
 ```
 
 ### 📊 **Team Management Commands**
@@ -128,6 +131,7 @@ Each framework gets:
 - ✅ **Build optimization** configuration
 - ✅ **Component library recommendations** and auto-installation
 - ✅ **Smart Tailwind CSS detection** with v4.1+ hacker system
+- ✅ **Enterprise backend generation** with DDD, CQRS, Event Sourcing
 - ✅ **Modern CSS features** (container queries, color-mix, cascade layers)
 
 ---
@@ -406,12 +410,14 @@ cd your-project
 🌈 Modern CSS: Glass morphism, container queries, color-mix() enabled
 📚 Example code provided for each suggestion
 
-🏗️ EXPRESS.JS PROJECT DETECTED:
+🏗️ NESTJS PROJECT DETECTED:
 ❌ Skipping Tailwind CSS (Backend Framework detected)
-✅ Focus on API development tools instead
-💡 Implement proper error handling middleware
-🔧 Add request validation with Zod
-⚡ Use compression and helmet for performance/security
+🚀 Auto-generating Enterprise Backend Architecture
+🏗️ Architecture: DDD + CQRS + Event Sourcing
+💎 Patterns: Domain entities, Aggregates, Repository pattern
+🛡️ Security: JWT + OAuth2 + RBAC + Policy engines
+📊 Observability: OpenTelemetry + Prometheus + Structured logging
+🚀 Deployment: Docker + Kubernetes + Service Mesh ready
 ```
 
 ---
