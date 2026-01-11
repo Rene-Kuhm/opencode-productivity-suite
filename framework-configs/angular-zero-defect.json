@@ -103,6 +103,35 @@
       "@ngrx/effects@^17.0.0",
       "@angular/pwa@^17.0.0"
     ],
+    "uiComponents": [
+      {
+        "name": "Angular Material",
+        "description": "Material Design components for Angular",
+        "install": "ng add @angular/material",
+        "popularity": 95,
+        "useCase": "material-design-angular",
+        "documentation": "https://material.angular.io/",
+        "priority": "recommended"
+      },
+      {
+        "name": "PrimeNG",
+        "description": "Rich UI components for Angular",
+        "install": "npm install primeng primeicons",
+        "popularity": 85,
+        "useCase": "enterprise-angular-apps",
+        "documentation": "https://www.primefaces.org/primeng/",
+        "priority": "optional"
+      },
+      {
+        "name": "ng-bootstrap",
+        "description": "Bootstrap components for Angular",
+        "install": "ng add @ng-bootstrap/ng-bootstrap",
+        "popularity": 80,
+        "useCase": "bootstrap-styled-apps",
+        "documentation": "https://ng-bootstrap.github.io/",
+        "priority": "optional"
+      }
+    ],
     "testing": [
       "@angular/cli@^17.0.0",
       "@angular-devkit/build-angular@^17.0.0",

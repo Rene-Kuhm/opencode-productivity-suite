@@ -9,6 +9,7 @@ param(
     [string]$Framework = "",
     [switch]$Security = $false,
     [switch]$Performance = $false,
+    [switch]$Components = $false,
     [switch]$JsonOutput = $false
 )
 
@@ -494,7 +495,7 @@ function Get-ProjectFramework {
 }
 
 function Get-RelevantPatterns {
-    param([string]$Framework, [string]$Component, [switch]$Security, [switch]$Performance)
+    param([string]$Framework, [string]$Component, [switch]$Security, [switch]$Performance, [switch]$Components)
     
     if (-not $PATTERN_DATABASE.ContainsKey($Framework)) {
         return @()
@@ -512,6 +513,10 @@ function Get-RelevantPatterns {
         $relevantPatterns += $frameworkPatterns.performance
     }
     
+    if ($Components) {
+        $relevantPatterns += Get-ComponentLibrarySuggestions -Framework $Framework
+    }
+    
     # Filter by component type if specified
     if ($Component) {
         $componentLower = $Component.ToLower()
@@ -523,7 +528,7 @@ function Get-RelevantPatterns {
     }
     
     # If no specific filters, return most common patterns
-    if (-not $Security -and -not $Performance -and -not $Component) {
+    if (-not $Security -and -not $Performance -and -not $Component -and -not $Components) {
         if ($frameworkPatterns.ContainsKey("components")) {
             $relevantPatterns += $frameworkPatterns.components | Select-Object -First 2
         }
@@ -533,9 +538,84 @@ function Get-RelevantPatterns {
         if ($frameworkPatterns.ContainsKey("api")) {
             $relevantPatterns += $frameworkPatterns.api | Select-Object -First 1
         }
+        # Also include component library suggestions by default
+        $relevantPatterns += Get-ComponentLibrarySuggestions -Framework $Framework
     }
     
     return $relevantPatterns
+}
+
+function Get-ComponentLibrarySuggestions {
+    param([string]$Framework)
+    
+    $componentLibraryPath = Join-Path (Split-Path $PSScriptRoot -Parent) "component-libraries-research.json"
+    
+    if (-not (Test-Path $componentLibraryPath)) {
+        return @()
+    }
+    
+    try {
+        $libraryData = Get-Content $componentLibraryPath | ConvertFrom-Json
+        $frameworkKey = $Framework.ToLower() -replace '\.js$', '' -replace '\s+', ''
+        
+        # Map framework names to component library keys
+        $frameworkMapping = @{
+            "nextjs" = "nextjs"
+            "next" = "nextjs"
+            "react" = "react"
+            "angular" = "angular"
+            "vue" = "vue"
+            "vuejs" = "vue"
+            "svelte" = "svelte"
+            "flutter" = "flutter"
+            "electron" = "electron"
+            "expo" = "expo"
+        }
+        
+        $mappedFramework = $frameworkMapping[$frameworkKey]
+        if (-not $mappedFramework -or -not $libraryData.componentLibrariesDatabase.$mappedFramework) {
+            return @()
+        }
+        
+        $libraries = $libraryData.componentLibrariesDatabase.$mappedFramework.primary
+        $suggestions = @()
+        
+        foreach ($lib in $libraries) {
+            $suggestions += @{
+                name = "Component Library: $($lib.name)"
+                pattern = "ui-component-library"
+                description = $lib.description
+                benefits = @("Pre-built components", "Consistent design", "Faster development", $lib.useCase)
+                code = @"
+# Install $($lib.name)
+$($lib.install)
+
+# Usage Example (adapt to your needs):
+import { Button, Card, Input } from '$($lib.name.ToLower() -replace '\s+', '-')'
+
+export function ExampleComponent() {
+  return (
+    <Card>
+      <Input placeholder="Enter text..." />
+      <Button>Submit</Button>
+    </Card>
+  )
+}
+
+# Documentation: $($lib.documentation)
+"@
+                install = $lib.install
+                documentation = $lib.documentation
+                popularity = $lib.popularity
+            }
+        }
+        
+        return $suggestions
+        
+    } catch {
+        Write-Warning "Failed to load component library suggestions: $($_.Exception.Message)"
+        return @()
+    }
 }
 
 function Analyze-ProjectContext {
@@ -546,6 +626,7 @@ function Analyze-ProjectContext {
         hasTypeScript = $false
         hasStateManagement = $false
         hasRouting = $false
+        hasUILibrary = $false
         suggestions = @()
     }
     
@@ -554,9 +635,11 @@ function Analyze-ProjectContext {
         $context.hasTypeScript = $true
     }
     
-    # Check for testing setup
+    # Check for testing setup and UI libraries
     if (Test-Path "$Path\package.json") {
         $packageContent = Get-Content "$Path\package.json" | ConvertFrom-Json
+        
+        # Check testing frameworks
         $testFrameworks = @("vitest", "jest", "cypress", "playwright")
         foreach ($framework in $testFrameworks) {
             if ($packageContent.devDependencies.$framework -or $packageContent.dependencies.$framework) {
@@ -573,6 +656,15 @@ function Analyze-ProjectContext {
                 break
             }
         }
+        
+        # Check for UI libraries
+        $uiLibs = @("@mui/material", "@chakra-ui/react", "antd", "@angular/material", "primeng", "vuetify", "primevue", "carbon-components-svelte")
+        foreach ($lib in $uiLibs) {
+            if ($packageContent.dependencies.$lib) {
+                $context.hasUILibrary = $true
+                break
+            }
+        }
     }
     
     # Generate context-based suggestions
@@ -582,6 +674,10 @@ function Analyze-ProjectContext {
     
     if (-not $context.hasTypeScript) {
         $context.suggestions += "Consider migrating to TypeScript for better type safety"
+    }
+    
+    if (-not $context.hasUILibrary) {
+        $context.suggestions += "Consider adding a component library for faster UI development (use --Components flag to see options)"
     }
     
     return $context
@@ -653,7 +749,7 @@ try {
     Write-Host "🔍 Analyzing project for pattern suggestions..." -ForegroundColor Cyan
     Write-Host "Framework detected: $framework" -ForegroundColor Green
     
-    $patterns = Get-RelevantPatterns -Framework $framework -Component $Component -Security:$Security -Performance:$Performance
+    $patterns = Get-RelevantPatterns -Framework $framework -Component $Component -Security:$Security -Performance:$Performance -Components:$Components
     $context = Analyze-ProjectContext -Path $ProjectPath -Framework $framework
     
     Show-PatternSuggestions -Patterns $patterns -Framework $framework -Context $context

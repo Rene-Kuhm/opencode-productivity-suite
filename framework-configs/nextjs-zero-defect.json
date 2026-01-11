@@ -133,6 +133,35 @@
       "react-hook-form@^7.47.0",
       "@hookform/resolvers@^3.3.0"
     ],
+    "uiComponents": [
+      {
+        "name": "shadcn/ui",
+        "description": "Beautifully designed components for Next.js with Tailwind",
+        "install": "npx shadcn-ui@latest init",
+        "popularity": 95,
+        "useCase": "modern-nextjs-apps",
+        "documentation": "https://ui.shadcn.com/",
+        "priority": "recommended"
+      },
+      {
+        "name": "Tremor",
+        "description": "React library to build dashboards fast",
+        "install": "npm install @tremor/react",
+        "popularity": 80,
+        "useCase": "dashboard-analytics",
+        "documentation": "https://www.tremor.so/",
+        "priority": "optional"
+      },
+      {
+        "name": "NextUI",
+        "description": "Beautiful, fast, and modern React UI library",
+        "install": "npm install @nextui-org/react",
+        "popularity": 85,
+        "useCase": "modern-web-interfaces",
+        "documentation": "https://nextui.org/",
+        "priority": "optional"
+      }
+    ],
     "testing": [
       "vitest@^1.0.0",
       "@vitejs/plugin-react@^4.0.0",
