@@ -1,27 +1,34 @@
 # 🚀 OpenCode Productivity Suite v3.0
 
-**The Most Advanced Development Productivity System with Enterprise Backend Expert & Smart Detection**
+**PowerShell automation for OpenCode: framework detection, project scaffolding and code-analysis commands.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![OpenCode](https://img.shields.io/badge/OpenCode-Revolutionized-blue.svg)](https://opencode.dev)
-[![Productivity](https://img.shields.io/badge/Productivity-5x-green.svg)](#performance-improvements)
+[![OpenCode](https://img.shields.io/badge/built%20for-OpenCode-blue.svg)](https://opencode.dev)
 [![Frameworks](https://img.shields.io/badge/Frameworks-38+-orange.svg)](#framework-support)
-[![Zero Defects](https://img.shields.io/badge/Zero_Defects-Guaranteed-red.svg)](#zero-defect-programming)
+[![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-5391FE?logo=powershell&logoColor=white)](#requirements)
 
-## 🎯 Revolutionary System Overview
+## 🎯 What this is
 
-Transform your development workflow with the **most comprehensive productivity system ever created**. Achieve **3-5x productivity improvements**, **99% setup time reduction**, and **guaranteed Zero Defects** through AI-powered intelligent automation.
+A set of PowerShell scripts that take the repetitive part out of starting and
+auditing a project under OpenCode. It inspects what you already have, sets up
+what matches it, and adds commands you can run against an existing codebase.
 
-### 🏆 World's First Features
-- **🧠 AI-Powered Framework Detection**: Automatically detects and optimizes 38+ frameworks
-- **🎯 Intelligent Commands**: Context-aware AI analysis and optimization
-- **🎨 Component Library Intelligence**: Auto-installs top-tier UI libraries (Material-UI, shadcn/ui, etc.)
-- **🚀 Smart Tailwind Detection**: Automatically installs Tailwind CSS v4.1+ only for UI frameworks
-- **🏗️ Backend Expert System**: Enterprise-grade backend generation with DDD, CQRS, microservices
-- **🧠 Tailwind CSS Hacker System**: Ultra-advanced configuration with modern CSS features
-- **📊 Real-Time Team Dashboard**: Live productivity metrics and Zero Defect scoring
-- **⚡ 30-Second Setup**: Complete production environment in one command
-- **🛡️ Guaranteed Zero Defects**: OWASP-compliant security and quality assurance
+It is tooling, not magic: everything here is a script you can read in
+`automation/` and `commands/`.
+
+### 🧰 What it does
+- **🧠 Framework detection**: inspects the project and recognises 38+ frameworks
+- **🎯 Analysis commands**: codebase review, performance and security passes,
+  pattern suggestions
+- **🎨 Component libraries**: installs Material-UI, shadcn/ui, Angular Material
+  and friends to match the framework it found
+- **🚀 Tailwind setup**: installs Tailwind CSS v4.1+ only when the project is a
+  UI framework, instead of always
+- **🏗️ Backend scaffolding**: generates DDD, CQRS and microservice layouts
+- **🪝 Git hooks**: installs pre-commit checks
+- **🛡️ Zero-defect checklist**: a documented review process (see
+  `.opencode/zero-defect-config.md`) — a discipline to follow, not a guarantee
+  the tooling can enforce for you
 
 ---
 
@@ -168,8 +175,8 @@ Each framework gets:
 
 ## 🛡️ Zero Defect Programming
 
-### **Guaranteed Quality Assurance**
-- **🔒 OWASP Top 10** security compliance
+### **What the checklist covers**
+- **🔒 OWASP Top 10** as the security reference
 - **⚡ Performance optimization** with AI analysis
 - **🧪 Automated testing** requirements
 - **📏 Code quality** enforcement
@@ -286,17 +293,21 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }))
 
 ---
 
-## 📈 Performance Improvements
+## 📈 What it saves you
 
-| Metric | Before | After | Improvement |
-|--------|--------|-------|-------------|
-| **Setup Time** | 2-4 hours | 30 seconds | **99% reduction** |
-| **Development Speed** | 1x | 3-5x | **300-500% faster** |
-| **Token Usage** | 100% | 20-40% | **60-80% reduction** |
-| **Error Rate** | Variable | Near zero | **90%+ reduction** |
-| **Team Adoption** | 20-30% | 95%+ | **3x improvement** |
-| **Security Compliance** | Manual | Automated | **100% OWASP** |
-| **Framework Setup** | Manual | Automatic | **99% time saved** |
+No benchmarks are published here, because none have been run. What the scripts
+replace is concrete enough without them:
+
+| Instead of | You run |
+|--------|--------|
+| Identifying the stack and wiring its tooling by hand | One detection pass |
+| Installing and configuring Tailwind per project | Automatic, and only for UI frameworks |
+| Copying a component library's setup steps | One command for the matching library |
+| Writing the same DDD/CQRS skeleton again | A generated layout |
+| Adding the same pre-commit checks to each repo | The hook installer |
+
+If you measure a real before/after in your own projects, numbers here would be
+a welcome pull request.
 
 ---
 
@@ -332,11 +343,10 @@ cd your-project
 /team-dashboard --live
 ```
 
-### **4. Watch the Magic**
-- ✅ **Automatic framework detection** and optimization
-- ✅ **Real-time code quality** feedback
-- ✅ **Zero defects** guaranteed
-- ✅ **Team productivity** metrics
+### **4. What you get**
+- ✅ **Automatic framework detection** and matching configuration
+- ✅ **Code quality** feedback as you commit
+- ✅ **A review checklist** the team can hold each other to
 - ✅ **Performance optimization** suggestions
 
 ---
@@ -476,21 +486,24 @@ cd opencode-productivity-suite
 
 ---
 
-## 🏆 Why This System Is Revolutionary
+## 🏆 Why you might want it
 
-### **World's First Achievements**
-1. **🧠 AI-Powered Framework Detection**: No one else has 38+ framework auto-detection
-2. **🎯 Context-Aware Commands**: First system with framework-specific AI analysis
-3. **📊 Real-Time Zero Defect Scoring**: Revolutionary team productivity metrics
-4. **⚡ 30-Second Complete Setup**: Unprecedented speed and automation
-5. **🛡️ Guaranteed Zero Defects**: Complete quality assurance system
+### **What it is good at**
+1. **🧠 Framework detection**: recognises 38+ frameworks and configures to match
+2. **🎯 Context-aware commands**: analysis passes that know what stack they are on
+3. **⚡ One-command setup**: the whole environment from a single script
+4. **🛡️ A written review process**: `.opencode/zero-defect-config.md` gives the
+   team one checklist to argue about instead of five opinions
 
-### **Competitive Advantages**
-- **99% faster setup** than any existing solution
-- **3-5x productivity improvement** guaranteed
-- **100% framework coverage** with intelligent optimization
-- **Real-time team collaboration** with gamification
-- **Zero learning curve** - works out of the box
+### **Where it does not fit**
+- **PowerShell only.** No bash port, so Linux and macOS are out unless you run
+  PowerShell Core.
+- **Opinionated scaffolding.** The DDD/CQRS layouts are one particular take; if
+  yours differs you will be deleting as much as you keep.
+- **Detection over inference.** It matches on what is in the project, so an
+  unusual setup may simply not be recognised.
+- **No metrics.** The quality checklist is a discipline, not something the
+  scripts can verify for you.
 
 ---
 
@@ -520,15 +533,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-## 🚀 **Ready to Revolutionize Your Development?**
+## 🚀 **Try it**
 
-### **Install Now and Experience 3-5x Productivity**
+Read `deploy/production-setup.ps1` first — piping a script straight into a
+shell is worth a look before you run it.
 
 ```powershell
 curl -L https://raw.githubusercontent.com/Rene-Kuhm/opencode-productivity-suite/main/deploy/production-setup.ps1 | powershell
 ```
 
-**🎯 30 seconds to setup • 🧠 AI-powered • 📊 Real-time metrics • 🛡️ Zero defects guaranteed**
+**🎯 One-command setup • 🧠 38+ frameworks detected • 🪝 Git hooks • 🛡️ A review checklist worth arguing about**
 
 ---
 
